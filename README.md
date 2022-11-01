@@ -1,6 +1,6 @@
-# Create React App with create-react-app
+# Three.js Scene Viewer with React-fiber
 
-This is a source of baseline files to create a React App without relying on the cmd of create-react-app. Allowing a clean baseline to build from when creating new applications, allowing for flexibility and greater understanding of whats under the hood. 
+A scene viewr built in react using React-fiber and drei. Organically created webpack folder and Babel inetegration. 
 
 ```
 npm i
