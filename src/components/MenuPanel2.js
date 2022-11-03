@@ -40,6 +40,8 @@ const MenuPanel2 = (props) => {
                     props.modelScale * 0.9
                 );
                 break;
+                default:
+                    return;
         }
     }
     return (
