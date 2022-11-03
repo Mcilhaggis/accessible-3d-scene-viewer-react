@@ -19,16 +19,24 @@ const MenuPanel2 = () => {
     const moveLeft = () => {
         alert('move left')
     }
+    const zoomIn = () => {
+        alert('zoom in')
+    }
+    const zoomOut = () => {
+        alert('zoom out')
+    }
 
     return (
         <div className="menuContainer">
             <button className="collapseBtn" tabIndex="0" onClick={toggle}>Controls</button>
             {open && (
                 <div className="toggle">
-                    <button onClick={moveUp}>Up</button>
-                    <button onClick={moveRight}>Right</button>
-                    <button onClick={moveDown}>Down</button>
-                    <button onClick={moveLeft}>Left</button>
+                    <button className="navigationBtn" onClick={moveUp}>Up</button>
+                    <button className="navigationBtn" onClick={moveRight}>Right</button>
+                    <button className="navigationBtn" onClick={moveDown}>Down</button>
+                    <button className="navigationBtn" onClick={moveLeft}>Left</button>
+                    <button className="zoomBtn" onClick={zoomIn}>+</button>
+                    <button className="zoomBtn" onClick={zoomOut}>-</button>
                 </div>
             )}
         </div>

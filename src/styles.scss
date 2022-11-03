@@ -44,6 +44,7 @@
 
 
     .collapseBtn, button{
+        width: 100%;
         z-index: 1001;
         display: inline-block;
         outline: 0;
@@ -73,10 +74,12 @@
     
     }
 
-    button {
-        width: 100%;
+    .navigationBtn {
         display: inline-block;
-        height: 22px;
+        height: 24px;
+    }
+    .zoomBtn{
+        width: 50%;
 
     }
 }

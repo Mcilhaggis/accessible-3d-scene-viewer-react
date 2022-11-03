@@ -40,6 +40,7 @@
   z-index: 1001;
 }
 .menuContainer .collapseBtn, .menuContainer button {
+  width: 100%;
   z-index: 1001;
   display: inline-block;
   outline: 0;
@@ -66,10 +67,12 @@
 .menuContainer .collapseBtn :focus, .menuContainer button :focus {
   border: 8px solid rgb(194, 186, 66);
 }
-.menuContainer button {
-  width: 100%;
+.menuContainer .navigationBtn {
   display: inline-block;
-  height: 22px;
+  height: 24px;
+}
+.menuContainer .zoomBtn {
+  width: 50%;
 }
 
 /*# sourceMappingURL=styles.css.map */
