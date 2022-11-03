@@ -1,21 +1,37 @@
 
 // Entry point of react App
-import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber"
+import React, { Suspense, useState } from "react";
+import { Canvas, camera } from "@react-three/fiber"
 import { OrbitControls } from '@react-three/drei'
 
 import MenuPanel from './components/MenuPanel2'
 import Progress from './components/Progress'
-import Trailer from './components/Trailer'
+import Model from './components/Model'
 
 import './styles.scss'
+
 const App = () => {
+
+    const [modelScale, setModelScale] = useState(0.021);
+    const [modelZPos, setModelZPos] = useState(4.5);
+
+
+
+    console.log('cameraZPos', modelZPos)
     return (
         <>
             <div className="main-container" id="container1">
-                <MenuPanel />
+                <MenuPanel
+                    modelScale={modelScale}
+                    setModelScale={setModelScale}
+                    modelZPos={modelZPos}
+                    setModelZPos={setModelZPos}
+                />
                 {/* Trailer */}
-                <Canvas id="scene-container">
+                <Canvas
+                    id="scene-container"
+                    camera={{ position: [0, 0, 4.5] }}
+                >
                     <OrbitControls
                     // enableZoom={false}
                     />
@@ -27,7 +43,13 @@ const App = () => {
                         intensity={1}
                     />
                     <Suspense fallback={<Progress />}>
-                        <Trailer />
+                        <Model
+                            modelScale={modelScale}
+                            setModelScale={setModelScale}
+
+                            modelZPos={modelZPos}
+                            setModelZPos={setModelZPos}
+                        />
                     </Suspense>
                 </Canvas>
             </div>

@@ -9,13 +9,17 @@ title: Trailer
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export default function Trailer(props) {
+export default function Model(props) {
+console.log('props.modelZPos', props.modelZPos)
+
   const { nodes, materials } = useGLTF('./assets/gltf/trailer.gltf')
   return (
-    <group {...props} dispose={null}>
+    <group {...props}
+      dispose={null}
+    >
       <group
-        rotation={[-Math.PI / 3, 0, 4.5]}
-        scale={0.02}
+        rotation={[-Math.PI / 3, 0, props.modelZPos]}
+        scale={props.modelScale}
       >
         <mesh
           geometry={nodes.Object_2.geometry}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-const MenuPanel2 = () => {
+const MenuPanel2 = (props) => {
+    console.log(props)
     const [open, setOpen] = useState(false);
 
     const toggle = () => {
@@ -10,20 +11,33 @@ const MenuPanel2 = () => {
     const moveUp = () => {
         alert('move up')
     }
-    const moveRight = () => {
-        alert('move right')
-    }
     const moveDown = () => {
         alert('move down')
     }
-    const moveLeft = () => {
-        alert('move left')
+
+
+    const moveRight = (constant) => {
+        console.log(props.modelZPos,constant )
+        props.setModelScale(
+            props.modelZPos + constant
+            )
+            console.log(props.modelZPos * constant)
     }
-    const zoomIn = () => {
-        alert('zoom in')
+    const moveLeft = (constant) => {
+        props.setModelScale(
+            props.modelZPos * constant
+        )
     }
-    const zoomOut = () => {
-        alert('zoom out')
+    const zoomIn = (constant) => {
+        props.setModelScale(
+            props.modelScale * constant
+        )
+    }
+
+    const zoomOut = (constant) => {
+        props.setModelScale(
+            props.modelScale * constant
+        )
     }
 
     return (
@@ -32,11 +46,11 @@ const MenuPanel2 = () => {
             {open && (
                 <div className="toggle">
                     <button className="navigationBtn" onClick={moveUp}>Up</button>
-                    <button className="navigationBtn" onClick={moveRight}>Right</button>
+                    <button className="navigationBtn" onClick={() => moveRight(1.1)}>Right</button>
                     <button className="navigationBtn" onClick={moveDown}>Down</button>
-                    <button className="navigationBtn" onClick={moveLeft}>Left</button>
-                    <button className="zoomBtn" onClick={zoomIn}>+</button>
-                    <button className="zoomBtn" onClick={zoomOut}>-</button>
+                    <button className="navigationBtn" onClick={() => moveLeft(0.9)}>Left</button>
+                    <button className="zoomBtn" onClick={() => zoomIn(1.1)}>+</button>
+                    <button className="zoomBtn" onClick={() => zoomOut(0.9)}>-</button>
                 </div>
             )}
         </div>
