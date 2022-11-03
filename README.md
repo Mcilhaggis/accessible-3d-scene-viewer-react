@@ -19,13 +19,22 @@ This will create main file and basic set up to let the application run
 - babel
 - webpack 
 - three
-- three @react-three/fiber
-- three @react-three/drei
+- @react-three/fiber
+- @react-three/drei
 
 ### To load scss files:
 - sass
 - sass-loader
 - node-sass
+
+To create a css file from the scss files, from the root folder run:
+```
+ sass src/styles.scss src/styles.css
+```
+
+### To insert menu
+-   lil-gui
+
 
 To render glTF files as 2.0 version, which renders, meshes, shadings and animations differently. 
 - gltf-pipeline

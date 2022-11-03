@@ -13,8 +13,14 @@ export default function Trailer(props) {
   const { nodes, materials } = useGLTF('./assets/gltf/trailer.gltf')
   return (
     <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={0.03}>
-        <mesh geometry={nodes.Object_2.geometry} material={materials['0208trailer_default']} />
+      <group
+        rotation={[-Math.PI / 3, 0, 4.5]}
+        scale={0.02}
+      >
+        <mesh
+          geometry={nodes.Object_2.geometry}
+          material={materials['0208trailer_default']}
+        />
       </group>
     </group>
   )
