@@ -39,7 +39,8 @@
   right: 0;
   z-index: 1001;
 }
-.menuContainer .collapseBtn, .menuContainer button {
+.menuContainer .collapseBtn,
+.menuContainer button {
   width: 100%;
   z-index: 1001;
   display: inline-block;
@@ -58,13 +59,15 @@
   height: 36px;
   transition: all 150ms ease-in-out 0s;
 }
-.menuContainer .collapseBtn :hover, .menuContainer button :hover {
+.menuContainer .collapseBtn :hover,
+.menuContainer button :hover {
   color: rgb(61, 79, 88);
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(93, 108, 116);
   box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px, rgb(231, 238, 236) 0px 0px 0px 3px;
 }
-.menuContainer .collapseBtn :focus, .menuContainer button :focus {
+.menuContainer .collapseBtn :focus,
+.menuContainer button :focus {
   border: 8px solid rgb(194, 186, 66);
 }
 .menuContainer .navigationBtn {

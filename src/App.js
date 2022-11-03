@@ -17,7 +17,6 @@ const App = () => {
 
 
 
-    console.log('cameraZPos', modelZPos)
     return (
         <>
             <div className="main-container" id="container1">

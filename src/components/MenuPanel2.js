@@ -17,14 +17,14 @@ const MenuPanel2 = (props) => {
 
 
     const moveRight = (constant) => {
-        console.log(props.modelZPos,constant )
-        props.setModelScale(
+        console.log('move right', props.modelZPos, constant)
+        props.setModelZPos(
             props.modelZPos + constant
-            )
-            console.log(props.modelZPos * constant)
+        )
     }
     const moveLeft = (constant) => {
-        props.setModelScale(
+        console.log('move left', props.modelZPos, constant)
+        props.setModelZPos(
             props.modelZPos * constant
         )
     }

@@ -42,8 +42,8 @@
     right: 0;
     z-index: 1001;
 
-
-    .collapseBtn, button{
+    .collapseBtn,
+    button {
         width: 100%;
         z-index: 1001;
         display: inline-block;
@@ -67,19 +67,16 @@
             border: 1px solid rgb(93, 108, 116);
             box-shadow: rgb(0 0 0 / 30%) 0px 4px 4px, rgb(231 238 236) 0px 0px 0px 3px;
         }
-        :focus{
+        :focus {
             border: 8px solid rgb(194, 186, 66);
-
         }
-    
     }
 
     .navigationBtn {
         display: inline-block;
         height: 24px;
     }
-    .zoomBtn{
+    .zoomBtn {
         width: 50%;
-
     }
 }
