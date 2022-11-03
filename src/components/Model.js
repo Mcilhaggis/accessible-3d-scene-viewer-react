@@ -18,7 +18,7 @@ console.log('props.modelZPos', props.modelZPos)
       dispose={null}
     >
       <group
-        rotation={[-Math.PI / 3, 0, props.modelZPos]}
+        rotation={[-Math.PI / props.modelXPos, 0, props.modelZPos]}
         scale={props.modelScale}
       >
         <mesh

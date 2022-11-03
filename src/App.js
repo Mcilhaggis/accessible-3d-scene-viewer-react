@@ -14,6 +14,7 @@ const App = () => {
 
     const [modelScale, setModelScale] = useState(0.021);
     const [modelZPos, setModelZPos] = useState(4.5);
+    const [modelXPos, setModelXPos] = useState(3);
 
 
 
@@ -23,8 +24,12 @@ const App = () => {
                 <MenuPanel
                     modelScale={modelScale}
                     setModelScale={setModelScale}
+
                     modelZPos={modelZPos}
                     setModelZPos={setModelZPos}
+
+                    modelXPos={modelXPos}
+                    setModelXPos={setModelXPos}
                 />
                 {/* Trailer */}
                 <Canvas
@@ -48,6 +53,9 @@ const App = () => {
 
                             modelZPos={modelZPos}
                             setModelZPos={setModelZPos}
+
+                            modelXPos={modelXPos}
+                            setModelXPos={setModelXPos}
                         />
                     </Suspense>
                 </Canvas>

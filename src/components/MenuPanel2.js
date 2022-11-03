@@ -8,22 +8,24 @@ const MenuPanel2 = (props) => {
         setOpen(!open);
     };
 
-    const moveUp = () => {
-        alert('move up')
+    const moveUp = (constant) => {
+        props.setModelXPos(
+            props.modelXPos * constant
+        )
     }
-    const moveDown = () => {
-        alert('move down')
+    const moveDown = (constant) => {
+        props.setModelXPos(
+            props.modelXPos * constant
+        )
     }
 
 
     const moveRight = (constant) => {
-        console.log('move right', props.modelZPos, constant)
         props.setModelZPos(
-            props.modelZPos + constant
+            props.modelZPos * constant
         )
     }
     const moveLeft = (constant) => {
-        console.log('move left', props.modelZPos, constant)
         props.setModelZPos(
             props.modelZPos * constant
         )
@@ -45,9 +47,9 @@ const MenuPanel2 = (props) => {
             <button className="collapseBtn" tabIndex="0" onClick={toggle}>Controls</button>
             {open && (
                 <div className="toggle">
-                    <button className="navigationBtn" onClick={moveUp}>Up</button>
+                    <button className="navigationBtn" onClick={() => moveUp(0.9)}>Up</button>
                     <button className="navigationBtn" onClick={() => moveRight(1.1)}>Right</button>
-                    <button className="navigationBtn" onClick={moveDown}>Down</button>
+                    <button className="navigationBtn" onClick={() => moveDown(1.1)}>Down</button>
                     <button className="navigationBtn" onClick={() => moveLeft(0.9)}>Left</button>
                     <button className="zoomBtn" onClick={() => zoomIn(1.1)}>+</button>
                     <button className="zoomBtn" onClick={() => zoomOut(0.9)}>-</button>
