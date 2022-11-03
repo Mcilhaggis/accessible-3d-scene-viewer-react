@@ -50,7 +50,6 @@ npx gltf newname.gltf
 ```
 
 ## Wants: 
-- keyboard navigation 
 - No screen reader description
 - Clickable/keyboard controls to move and rotate object and toggle labels
 - The bottom of the I-Frame visible in fullscreen at 200%
@@ -59,7 +58,6 @@ npx gltf newname.gltf
 
 ## Stretch goals
 - Having a test page on the 101 for anyone to test lighting, camera position and scale 
-- Convert to React
 - Convert to Typescript
 
 ## Concerns to tackle from Sketchfab integration:
@@ -68,7 +66,8 @@ npx gltf newname.gltf
 
 ## Features
 - Import data (images and controls) from json files
-- Intgrates lil-gui to allow for customisation and controls
+- Custom built collapsable menu - keyboard navigation
+
 ---
 
 ## Resources

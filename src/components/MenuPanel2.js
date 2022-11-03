@@ -8,51 +8,51 @@ const MenuPanel2 = (props) => {
         setOpen(!open);
     };
 
-    const moveUp = (constant) => {
-        props.setModelXPos(
-            props.modelXPos * constant
-        )
+    const directionalMovement = (direction) => {
+        switch (direction) {
+            case 'up':
+                props.setModelXPos(
+                    props.modelXPos * 0.9
+                );
+                break;
+            case 'down':
+                props.setModelXPos(
+                    props.modelXPos * 1.1
+                );
+                break;
+            case 'left':
+                props.setModelZPos(
+                    props.modelZPos * 0.9
+                )
+                break;
+            case 'right':
+                props.setModelZPos(
+                    props.modelZPos * 1.1
+                )
+                break;
+            case 'zoomIn':
+                props.setModelScale(
+                    props.modelScale * 1.1
+                );
+                break;
+            case 'zoomOut':
+                props.setModelScale(
+                    props.modelScale * 0.9
+                );
+                break;
+        }
     }
-    const moveDown = (constant) => {
-        props.setModelXPos(
-            props.modelXPos * constant
-        )
-    }
-
-
-    const moveRight = (constant) => {
-        props.setModelZPos(
-            props.modelZPos * constant
-        )
-    }
-    const moveLeft = (constant) => {
-        props.setModelZPos(
-            props.modelZPos * constant
-        )
-    }
-    const zoomIn = (constant) => {
-        props.setModelScale(
-            props.modelScale * constant
-        )
-    }
-
-    const zoomOut = (constant) => {
-        props.setModelScale(
-            props.modelScale * constant
-        )
-    }
-
     return (
         <div className="menuContainer">
             <button className="collapseBtn" tabIndex="0" onClick={toggle}>Controls</button>
             {open && (
                 <div className="toggle">
-                    <button className="navigationBtn" onClick={() => moveUp(0.9)}>Up</button>
-                    <button className="navigationBtn" onClick={() => moveRight(1.1)}>Right</button>
-                    <button className="navigationBtn" onClick={() => moveDown(1.1)}>Down</button>
-                    <button className="navigationBtn" onClick={() => moveLeft(0.9)}>Left</button>
-                    <button className="zoomBtn" onClick={() => zoomIn(1.1)}>+</button>
-                    <button className="zoomBtn" onClick={() => zoomOut(0.9)}>-</button>
+                    <button className="navigationBtn" onClick={() => directionalMovement('up')}>Up</button>
+                    <button className="navigationBtn" onClick={() => directionalMovement('right')}>Right</button>
+                    <button className="navigationBtn" onClick={() => directionalMovement('down')}>Down</button>
+                    <button className="navigationBtn" onClick={() => directionalMovement('left')}>Left</button>
+                    <button className="zoomBtn" onClick={() => directionalMovement('zoomIn')}>+</button>
+                    <button className="zoomBtn" onClick={() => directionalMovement('zoomOut')}>-</button>
                 </div>
             )}
         </div>
