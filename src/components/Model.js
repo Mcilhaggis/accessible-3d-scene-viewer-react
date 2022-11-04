@@ -10,7 +10,23 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function Model(props) {
-console.log('props.modelZPos', props.modelZPos)
+
+  let fired = false;
+  addEventListener('keydown', (event) => {
+    if (!fired) {
+      fired = true;
+      // check what key pressed...
+      if (event.code === 'ArrowRight' || event.code === 'ArrowLeft' || event.code === 'ArrowUp' || event.code === 'ArrowDown') {
+        props.setKeyPressDirection(event.key.substring(5).toLowerCase())
+        
+      }
+      fired = false;
+    }
+  });
+  // addEventListener('keyup', (event) => {
+  //   console.log('event fired')
+  // });
+
 
   const { nodes, materials } = useGLTF('./assets/gltf/trailer.gltf')
   return (

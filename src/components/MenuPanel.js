@@ -1,32 +1,27 @@
-import GUI from 'lil-gui';
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 
-const createGui = () => {
+const MenuPanel2 = (props) => {
+    const [open, setOpen] = useState(false);
 
-    console.log(document.getElementById('container1'))
+    const toggle = () => {
+        setOpen(!open);
+    };
 
-    const gui = new GUI({
-        container: document.getElementById('container1')
-    });
-    
-
-    const myObject = {
-        myString: 'lil-gui',
-        moveLeft: function () { alert('move left') },
-        moveRight: function () { alert('move right') },
-        moveUp: function () { alert('move up') },
-        moveDown: function () { alert('move down') }
-    }
-    // keyboard Controls
-    gui.add(myObject, 'moveLeft'); // ButtonLeft
-    gui.add(myObject, 'moveRight'); // ButtonRight
-    gui.add(myObject, 'moveUp'); // ButtonUp
-    gui.add(myObject, 'moveDown'); // ButtonDown
-
-
-    let guiMenu = gui
-
-    return { guiMenu }
+    return (
+        <div className="menuContainer">
+            <button className="collapseBtn" tabIndex="0" onClick={toggle}>Controls</button>
+            {open && (
+                <div className="toggle">
+                    <button className="navigationBtn" onClick={() => props.directionalMovement('up')}>Up</button>
+                    <button className="navigationBtn" onClick={() => props.directionalMovement('right')}>Right</button>
+                    <button className="navigationBtn" onClick={() => props.directionalMovement('down')}>Down</button>
+                    <button className="navigationBtn" onClick={() => props.directionalMovement('left')}>Left</button>
+                    <button className="zoomBtn" onClick={() => props.directionalMovement('zoomIn')}>+</button>
+                    <button className="zoomBtn" onClick={() => props.directionalMovement('zoomOut')}>-</button>
+                </div>
+            )}
+        </div>
+    )
 }
 
-export default createGui();
+export default MenuPanel2

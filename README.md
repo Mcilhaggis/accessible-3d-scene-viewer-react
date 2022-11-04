@@ -51,13 +51,14 @@ npx gltf newname.gltf
 
 ## Wants: 
 - No screen reader description
-- Clickable/keyboard controls to move and rotate object and toggle labels
+- Use arrow keys to rotate model
 - The bottom of the I-Frame visible in fullscreen at 200%
 - Render if there is more than one on the webpage using its repsenctive json file to populate content.
+- Click on an area and use lookAt() to focus in on an area
 
 
 ## Stretch goals
-- Having a test page on the 101 for anyone to test lighting, camera position and scale 
+- Having a test page for users to test lighting, camera position and scale 
 - Convert to Typescript
 
 ## Concerns to tackle from Sketchfab integration:
@@ -66,7 +67,7 @@ npx gltf newname.gltf
 
 ## Features
 - Import data (images and controls) from json files
-- Custom built collapsable menu - keyboard navigation
+- Custom built collapsable menu for clickable and tabbable key board interaction
 
 ---
 
