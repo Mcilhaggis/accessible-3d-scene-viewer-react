@@ -50,16 +50,17 @@ const App = () => {
                 )
                 setKeyPressDirection(null)
                 break;
-            case 'zoomIn':
+            case 'add':
                 setModelScale(
                     modelScale * 1.1
                 );
                 setKeyPressDirection(null)
                 break;
-            case 'zoomOut':
+            case 'subtract':
                 setModelScale(
                     modelScale * 0.9
                 );
+                setKeyPressDirection(null)
                 break;
             default:
                 return;

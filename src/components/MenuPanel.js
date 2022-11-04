@@ -16,8 +16,8 @@ const MenuPanel2 = (props) => {
                     <button className="navigationBtn" onClick={() => props.directionalMovement('right')}>Right</button>
                     <button className="navigationBtn" onClick={() => props.directionalMovement('down')}>Down</button>
                     <button className="navigationBtn" onClick={() => props.directionalMovement('left')}>Left</button>
-                    <button className="zoomBtn" onClick={() => props.directionalMovement('zoomIn')}>+</button>
-                    <button className="zoomBtn" onClick={() => props.directionalMovement('zoomOut')}>-</button>
+                    <button className="zoomBtn" onClick={() => props.directionalMovement('add')}>+</button>
+                    <button className="zoomBtn" onClick={() => props.directionalMovement('subtract')}>-</button>
                 </div>
             )}
         </div>

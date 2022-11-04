@@ -13,13 +13,15 @@ export default function Model(props) {
 
   let fired = false;
   addEventListener('keydown', (event) => {
+    console.log(event.code)
     if (!fired) {
       fired = true;
       // check what key pressed...
       if (event.code === 'ArrowRight' || event.code === 'ArrowLeft' || event.code === 'ArrowUp' || event.code === 'ArrowDown') {
-        props.setKeyPressDirection(event.key.substring(5).toLowerCase())
-        
-      }
+        props.setKeyPressDirection(event.code.substring(5).toLowerCase())
+      } else if (event.code === 'NumpadAdd' || event.code === 'NumpadSubtract') {
+        props.setKeyPressDirection(event.code.substring(6).toLowerCase())
+      } else { return }
       fired = false;
     }
   });
