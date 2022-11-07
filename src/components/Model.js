@@ -11,29 +11,25 @@ import { useGLTF } from '@react-three/drei'
 
 export default function Model(props) {
 
-  let fired = false;
-  addEventListener('keydown', (event) => {
-    console.log(event.code)
-    if (!fired) {
-      fired = true;
+  addEventListener('keyup', (e) => {
+    e.preventDefault()
+
       // check what key pressed...
-      if (event.code === 'ArrowRight' || event.code === 'ArrowLeft' || event.code === 'ArrowUp' || event.code === 'ArrowDown') {
-        props.setKeyPressDirection(event.code.substring(5).toLowerCase())
-      } else if (event.code === 'NumpadAdd' || event.code === 'NumpadSubtract') {
-        props.setKeyPressDirection(event.code.substring(6).toLowerCase())
+      if (e.code === 'ArrowRight' || e.code === 'ArrowLeft' || e.code === 'ArrowUp' || e.code === 'ArrowDown') {
+        props.setKeyPressDirection(e.code.substring(5).toLowerCase())
+      } else if (e.code === 'NumpadAdd' || e.code === 'NumpadSubtract') {
+        props.setKeyPressDirection(e.code.substring(6).toLowerCase())
       } else { return }
-      fired = false;
-    }
+    
   });
-  // addEventListener('keyup', (event) => {
-  //   console.log('event fired')
-  // });
+
 
 
   const { nodes, materials } = useGLTF('./assets/gltf/trailer.gltf')
   return (
     <group {...props}
       dispose={null}
+      tabindex="0"
     >
       <group
         rotation={[-Math.PI / props.modelXPos, 0, props.modelZPos]}

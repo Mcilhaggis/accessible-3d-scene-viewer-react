@@ -50,7 +50,7 @@
   border-radius: 4px;
   text-decoration: none;
   cursor: pointer;
-  background-color: rgb(249, 251, 250);
+  background-color: rgb(234, 236, 235);
   border: 1px solid rgb(137, 151, 155);
   box-shadow: rgba(6, 22, 33, 0.3) 0px 1px 2px;
   color: rgb(61, 79, 88);
@@ -59,16 +59,15 @@
   height: 36px;
   transition: all 150ms ease-in-out 0s;
 }
-.menuContainer .collapseBtn :hover,
-.menuContainer button :hover {
-  color: rgb(61, 79, 88);
+.menuContainer .collapseBtn:hover,
+.menuContainer button:hover {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(93, 108, 116);
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px, rgb(231, 238, 236) 0px 0px 0px 3px;
 }
-.menuContainer .collapseBtn :focus,
-.menuContainer button :focus {
-  border: 8px solid rgb(194, 186, 66);
+.menuContainer .collapseBtn:focus,
+.menuContainer button:focus {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(83, 83, 83);
 }
 .menuContainer .navigationBtn {
   display: inline-block;

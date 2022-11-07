@@ -32,9 +32,6 @@ To create a css file from the scss files, from the root folder run:
  sass src/styles.scss src/styles.css
 ```
 
-### To insert menu
--   lil-gui
-
 
 To render glTF files as 2.0 version, which renders, meshes, shadings and animations differently. 
 - gltf-pipeline
@@ -42,24 +39,25 @@ To render glTF files as 2.0 version, which renders, meshes, shadings and animati
 Once you have your original gltf file, go to the folder it's in and run the following to process and rename the file. 
 
 ```
- gltf-pipeline -i scene.gltf -o newname.gltf -d
+ gltf-pipeline -i src/img/castle_of_loarre/scene.gltf -o dist/assets/gltf/castle.gltf -d
 ```
-Cnvert the new gltf file into a jsx file with the following command.
+Convert the new gltf file into a jsx file with the following command.
 ```
-npx gltf newname.gltf
+npx gltfjsx castle.gltf
 ```
 
 ## Wants: 
 - No screen reader description
-- Use arrow keys to rotate model
-- The bottom of the I-Frame visible in fullscreen at 200%
+- Use JSON file to render model and inital positioning
 - Render if there is more than one on the webpage using its repsenctive json file to populate content.
 - Click on an area and use lookAt() to focus in on an area
+- alert to screen reader that interactive is visible and can be clicked
 
 
 ## Stretch goals
 - Having a test page for users to test lighting, camera position and scale 
 - Convert to Typescript
+- When rotaing the item have the screen reader read out if new visuals/items are now visible
 
 ## Concerns to tackle from Sketchfab integration:
 - No movement of object with keyboard when in orbit mode, and limited movement in first-person mode
@@ -68,7 +66,8 @@ npx gltf newname.gltf
 ## Features
 - Import data (images and controls) from json files
 - Custom built collapsable menu for clickable and tabbable key board interaction
-
+- Use arrow keys to rotate model
+- At 200% zoom container and visual are maintained
 ---
 
 ## Resources
