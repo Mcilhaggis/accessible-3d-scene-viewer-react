@@ -1,66 +1,34 @@
 
 // Entry point of react App
-import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber"
+import React, { Suspense, useState, useEffect } from "react";
+import { Canvas, camera } from "@react-three/fiber"
 import { OrbitControls } from '@react-three/drei'
 
-import Box from './components/Box'
-import Sphere from './components/AnimatedSphere'
-import Trailer from './components/Trailer'
+import MenuPanel from './components/MenuPanel'
+import Progress from './components/Progress'
+import SceneViewer from './components/SceneViewer'
 
 import './styles.scss'
+
 const App = () => {
+// Find all DOM containers
+document.querySelectorAll('.flowchart-container')
+  .forEach((domContainer, index) => {
+    // Read the config from a data-* attribute.
+    const _config = domContainer.dataset.config;
+    let _tfc = (_config !== undefined && _config !== '') ? (<Flowchart id={index} config={_config} />) : (<div class='warn'>error: Flowchart - missing config</div >);
+
+    ReactDOM.render(_tfc, domContainer);
+  });
+  
+    // For each model folder output a Sceneviewer pointing to its respective glft file in assets
     return (
         <>
-            <div>Hello World! </div>
-            {/* <Canvas className="canvas">
-                <OrbitControls
-                    enableZoom={false}
-                />
-                <ambientLight
-                    intensity={0.5}
-                />
-                <directionalLight
-                    position={[-2, 5, 2]}
-                    intensity={1}
-                />
-                <Suspense fallback={null}>
-                    <Box />
-                </Suspense>
-            </Canvas> */}
-            {/* Sphere */}
-            <Canvas className="canvas">
-                <OrbitControls
-                    enableZoom={false}
-                />
-                <ambientLight
-                    intensity={0.5}
-                />
-                <directionalLight
-                    position={[-2, 5, 2]}
-                    intensity={1}
-                />
-                <Suspense fallback={null}>
-                    <Sphere />
-                </Suspense>
-            </Canvas>
-            {/* Trailer */}
-            <Canvas className="canvas">
-                <OrbitControls
-                    enableZoom={false}
-                />
-                <ambientLight
-                    intensity={0.5}
-                />
-                <directionalLight
-                    position={[-2, 5, 2]}
-                    intensity={1}
-                />
-                <Suspense fallback={null}>
-                    <Trailer />
-                </Suspense>
-            </Canvas>
+            <div className="main-container" id="container1">
+                <SceneViewer />
+            </div>
         </>
+
     )
 }
 
