@@ -1,7 +1,7 @@
 
 // Entry point of react App
 import React, { Suspense, useState, useEffect, useRef, useLayoutEffect } from "react";
-import { Canvas, camera, setDefaultCamera, Camera, PerspectiveCamera, useThree  } from "@react-three/fiber"
+import { Canvas, camera, setDefaultCamera, Camera, PerspectiveCamera, useThree } from "@react-three/fiber"
 import { OrbitControls, Bounds, useBounds, Html, KeyboardControls } from '@react-three/drei'
 
 import MenuPanel from './MenuPanel'
@@ -39,6 +39,8 @@ const SceneViewer = () => {
         console.log(direction)
         switch (direction) {
             case 'down':
+                console.log('down')
+
                 setModelXPos(
                     modelXPos + 1
                 );
@@ -46,39 +48,37 @@ const SceneViewer = () => {
                 break;
             case 'up':
                 setModelXPos(
-                    modelXPos -= 0.01
+                    modelXPos - 0.01
                 );
                 setKeyPressDirection(null)
                 break;
             case 'left':
                 setModelZPos(
-                    modelZPos -= 0.01
+                    modelZPos - 0.01
                 )
                 setKeyPressDirection(null)
                 break;
             case 'right':
                 setModelZPos(
-                    modelZPos += 0.1
+                    modelZPos + 0.1
                 )
                 setKeyPressDirection(null)
                 break;
             case 'add':
                 setModelScale(
-                    modelScale += 1.1
+                    modelScale + 1.1
                 );
                 setKeyPressDirection(null)
                 break;
             case 'subtract':
                 setModelScale(
-                    modelScale -= 0.9
+                    modelScale - 0.9
                 );
                 setKeyPressDirection(null)
                 break;
             default:
                 return;
         }
-        console.log(modelXPos)
-
     }
 
     function SelectToZoom({ children }) {
@@ -136,43 +136,51 @@ const SceneViewer = () => {
             setKeyPressDirection(e.code.substring(6).toLowerCase())
         } else { return }
         // });
-        
     }
 
 
 
-    function CustomCamera (props) {
+    function CustomCamera(props) {
         const cameraRef = useRef()
         const set = useThree(({ set }) => set)
         const size = useThree(({ size }) => size)
-        
         useLayoutEffect(() => {
             if (cameraRef.current) {
-              cameraRef.current.aspect = size.width / size.height
-              cameraRef.current.updateProjectionMatrix()
+                cameraRef.current.aspect = size.width / size.height
+                cameraRef.current.updateProjectionMatrix()
             }
-          }, [size, props])
-        
-          useLayoutEffect(() => {
+        }, [size, props])
+
+        useLayoutEffect(() => {
             set({ camera: cameraRef.current })
-          }, [])
-        
-        return <perspectiveCamera ref={cameraRef} position={[modelXPos, 0, modelZPos]}/>
+        }, [])
+
+        return <perspectiveCamera ref={cameraRef} 
+        position={[modelXPos, 0, modelZPos]} />
     }
- 
+
 
 
     return (
         <>
             <div className="main-container" id="container1"
-                onKeyDown={() => console.log('fired')}
             >
                 <MenuPanel
                     directionalMovement={directionalMovement}
-                />
-                <Canvas id="scene-container" >
 
-                    <CustomCamera position={[modelXPos, modelZPos, modelScale]} />
+                />
+                <Canvas id="scene-container"
+                    tabIndex='0'
+                    onKeyDown={(e) => {
+                        let slicedkeyCode = e.key.slice(5)
+                        directionalMovement(slicedkeyCode)
+                    }
+                    }
+                >
+
+                    <CustomCamera 
+                    // position={[modelXPos, modelZPos, modelScale]}
+                     />
                     <mesh >
 
                         <gridHelper />
