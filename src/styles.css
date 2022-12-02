@@ -1,0 +1,80 @@
+.canvasWrapper {
+  background-color: "red";
+  height: 500px !important;
+}
+
+.main-container {
+  color: silver;
+  position: relative;
+  border: 1px solid silver;
+  border-radius: 6px;
+  box-shadow: 1px 1px 10px 1px silver;
+  padding: 0;
+  width: 100%;
+  max-height: calc(100vmin - 4rem);
+  height: 40rem;
+}
+
+#scene-container {
+  /* tell our scene container to take up the full page */
+  /*
+    Set the container's background color to the same as the scene's
+    background to prevent flashing on load
+  */
+  background-color: skyblue;
+}
+
+.lil-gui {
+  /* to keep the controls visible above the scene placement */
+  z-index: 1 !important;
+  position: absolute !important;
+  right: 0 !important;
+}
+
+.menuContainer {
+  width: 120px;
+  height: 100px;
+  z-index: 1001;
+  position: absolute;
+  right: 0;
+  z-index: 1001;
+}
+.menuContainer .collapseBtn,
+.menuContainer button {
+  width: 100%;
+  z-index: 1001;
+  display: inline-block;
+  outline: 0;
+  appearance: none;
+  padding: 0px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: rgb(234, 236, 235);
+  border: 1px solid rgb(137, 151, 155);
+  box-shadow: rgba(6, 22, 33, 0.3) 0px 1px 2px;
+  color: rgb(61, 79, 88);
+  font-size: 14px;
+  font-weight: 400;
+  height: 36px;
+  transition: all 150ms ease-in-out 0s;
+}
+.menuContainer .collapseBtn:hover,
+.menuContainer button:hover {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(93, 108, 116);
+}
+.menuContainer .collapseBtn:focus,
+.menuContainer button:focus {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(83, 83, 83);
+}
+.menuContainer .navigationBtn {
+  display: inline-block;
+  height: 24px;
+}
+.menuContainer .zoomBtn {
+  width: 50%;
+}
+
+/*# sourceMappingURL=styles.css.map */
