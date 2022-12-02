@@ -159,7 +159,7 @@ const SceneViewer = () => {
         
         return <perspectiveCamera ref={cameraRef} position={[modelXPos, 0, modelZPos]}/>
     }
-
+ 
 
 
     return (
