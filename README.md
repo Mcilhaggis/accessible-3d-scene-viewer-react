@@ -60,6 +60,7 @@ npx gltfjsx castle.gltf
 ## Stretch goals
 - Having a test page for users to test lighting, camera position and scale 
 - Convert to Typescript
+- Saturation slider for offering colour contrast controls
 - When rotaing the item have the screen reader read out if new visuals/items are now visible
 
 ## Concerns to tackle from Sketchfab integration:
@@ -75,3 +76,7 @@ npx gltfjsx castle.gltf
 
 ## Resources
 Royalty free textures found using: https://www.textures.com/
+
+## Accessbility 
+- Possbly add information based of the grid location of certain items (like a chess board)
+

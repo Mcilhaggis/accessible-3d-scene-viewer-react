@@ -12,7 +12,7 @@ import Model from './Model'
 import '../styles.scss'
 const SceneViewer = () => {
     const [modelScale, setModelScale] = useState(0.021);
-    const [modelZPos, setModelZPos] = useState(4.5);
+    const [modelZPos, setModelZPos] = useState(0);
     const [modelXPos, setModelXPos] = useState(0);
     const [keypressDirection, setKeyPressDirection] = useState(null)
 
@@ -20,20 +20,6 @@ const SceneViewer = () => {
         console.log(keypressDirection)
         directionalMovement(keypressDirection);
     }, [keypressDirection]); // 
-
-    // let modelName = 'castle'
-
-    // addEventListener('keyup', (e) => {
-    //     e.preventDefault()
-
-    //     // check what key was pressed...
-    //     if (e.code === 'ArrowRight' || e.code === 'ArrowLeft' || e.code === 'ArrowUp' || e.code === 'ArrowDown') {
-    //         props.setKeyPressDirection(e.code.substring(5).toLowerCase())
-    //     } else if (e.code === 'NumpadAdd' || e.code === 'NumpadSubtract') {
-    //         props.setKeyPressDirection(e.code.substring(6).toLowerCase())
-    //     } else { return }
-    // });
-
 
     const directionalMovement = (direction) => {
         console.log(direction)
@@ -155,8 +141,9 @@ const SceneViewer = () => {
             set({ camera: cameraRef.current })
         }, [])
 
-        return <perspectiveCamera ref={cameraRef} 
-        position={[modelXPos, 0, modelZPos]} />
+        return <perspectiveCamera ref={cameraRef}
+            position={[0, 0, 10]}
+        />
     }
 
 
@@ -173,19 +160,17 @@ const SceneViewer = () => {
                     tabIndex='0'
                     onKeyDown={(e) => {
                         let slicedkeyCode = e.key.slice(5)
-                        directionalMovement(slicedkeyCode)
+                        directionalMovement(slicedkeyCode.toLowerCase())
                     }
                     }
                 >
-
-                    <CustomCamera 
-                    // position={[modelXPos, modelZPos, modelScale]}
-                     />
+                      {/* The X axis is red. The Y axis is green. The Z axis is blue. */}
+                        <axesHelper args={[50]}/>
+                    <CustomCamera />
                     <mesh >
-
                         <gridHelper />
-
-                        {/* <OrbitControls /> */}
+                      
+                        <OrbitControls />
                         <ambientLight
                             intensity={0.5}
                         />
@@ -194,7 +179,9 @@ const SceneViewer = () => {
                             intensity={1}
                         />
                         <Suspense fallback={<Progress />}>
-                            <group ref={ref}>
+                            <group ref={ref}
+                                position={[modelXPos, 0, modelZPos]}
+                            >
                                 <Dodecahedron
                                     position={[-2, 0, 0]}
                                     labelContent="shape 1" />
