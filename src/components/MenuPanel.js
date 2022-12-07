@@ -9,7 +9,8 @@ const MenuPanel2 = (props) => {
 
     return (
         <div className="menuContainer">
-            <button className="collapseBtn" tabIndex="0" onClick={toggle}>Controls</button>
+            <button className="collapseBtn" tabIndex="0" onClick={toggle}
+            onKeyPress={() => {if(e.keyCode === 27){console.log("Close")}}}>Controls</button>
             {open && (
                 <div className="toggle">
                     <button className="navigationBtn" onClick={() => props.directionalMovement('up')}>Up</button>

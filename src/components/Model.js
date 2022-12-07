@@ -6,42 +6,79 @@ source: https://sketchfab.com/3d-models/trailer-040ad3bbf0c54098b90a87ac517d3901
 title: Trailer
 */
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef, useState } from 'react'
+import { useFrame } from '@react-three/fiber'
+
+import { useGLTF, Html } from '@react-three/drei'
 
 export default function Model(props) {
 
-  addEventListener('keyup', (e) => {
-    e.preventDefault()
+  // addEventListener('keyup', (e) => {
+  //   e.preventDefault()
 
-      // check what key pressed...
-      if (e.code === 'ArrowRight' || e.code === 'ArrowLeft' || e.code === 'ArrowUp' || e.code === 'ArrowDown') {
-        props.setKeyPressDirection(e.code.substring(5).toLowerCase())
-      } else if (e.code === 'NumpadAdd' || e.code === 'NumpadSubtract') {
-        props.setKeyPressDirection(e.code.substring(6).toLowerCase())
-      } else { return }
-    
-  });
+  //   // check what key was pressed...
+  //   if (e.code === 'ArrowRight' || e.code === 'ArrowLeft' || e.code === 'ArrowUp' || e.code === 'ArrowDown') {
+  //     props.setKeyPressDirection(e.code.substring(5).toLowerCase())
+  //   } else if (e.code === 'NumpadAdd' || e.code === 'NumpadSubtract') {
+  //     props.setKeyPressDirection(e.code.substring(6).toLowerCase())
+  //   } else { return }
 
-
-
+  // });
   const { nodes, materials } = useGLTF('./assets/gltf/trailer.gltf')
+
+  // This reference gives us direct access to the THREE.Mesh object
+  const ref = useRef()
+  // Hold state for hovered and clicked events
+  const [hovered, setHover] = useState(false)
+  const hover = e => e.stopPropagation() && setHover(true)
+  const unhover = e => e.stopPropagation() && setHover(false)
+  const [clicked, click] = useState(false)
+
+  // Subscribe this component to the render-loop, rotate the mesh every frame
+
+
   return (
-    <group {...props}
-      dispose={null}
-      tabindex="0"
+    <mesh
+      {...props}
+      ref={ref}
+      // scale={clicked ? 1.5 : 1}
+      onClick={(event) => {
+        click(!clicked)
+      }}
+      onPointerOver={hover}
+      onPointerOut={unhover}
+      rotation={[-Math.PI / props.modelXPos, 0, props.modelZPos]}
     >
-      <group
-        rotation={[-Math.PI / props.modelXPos, 0, props.modelZPos]}
-        scale={props.modelScale}
-      >
-        <mesh
-          geometry={nodes.Object_2.geometry}
-          material={materials['0208trailer_default']}
-        />
-      </group>
-    </group>
+      {clicked && (
+        <Html scaleFactor={10}>
+          <div className="content">
+            A Box <br />
+            {/* {time}ms */}
+          </div>
+        </Html>
+      )}
+
+
+      {/* The X axis is red, the Y axis is green and the Z axis is blue. */}
+      <axesHelper args={[5]} />
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+    </mesh>
+    // <group {...props}
+    //   dispose={null}
+    //   tabindex="0"
+    // >
+    //   <group
+    //     rotation={[-Math.PI / props.modelXPos, 0, props.modelZPos]}
+    //     scale={props.modelScale}
+    //   >
+    //     <mesh
+    //       geometry={nodes.Object_2.geometry}
+    //       material={materials['0208trailer_default']}
+    //     />
+    //   </group>
+    // </group>
   )
 }
 
-useGLTF.preload('./assets/gltf/trailer.gltf')
+// useGLTF.preload('./assets/gltf/trailer.gltf')

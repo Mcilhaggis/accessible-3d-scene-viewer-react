@@ -21,6 +21,8 @@ This will create main file and basic set up to let the application run
 - three
 - @react-three/fiber
 - @react-three/drei
+- @react-three/a11y
+https://github.com/pmndrs/react-three-a11y 
 
 ### To load scss files:
 - sass
@@ -48,6 +50,7 @@ npx gltfjsx castle.gltf
 
 ## Wants: 
 - No screen reader description
+- Use Raycasting to interact with model on screen
 - Use JSON file to render model and inital positioning
 - Render if there is more than one on the webpage using its repsenctive json file to populate content.
 - Click on an area and use lookAt() to focus in on an area
@@ -57,6 +60,7 @@ npx gltfjsx castle.gltf
 ## Stretch goals
 - Having a test page for users to test lighting, camera position and scale 
 - Convert to Typescript
+- Saturation slider for offering colour contrast controls
 - When rotaing the item have the screen reader read out if new visuals/items are now visible
 
 ## Concerns to tackle from Sketchfab integration:
@@ -72,3 +76,7 @@ npx gltfjsx castle.gltf
 
 ## Resources
 Royalty free textures found using: https://www.textures.com/
+
+## Accessbility 
+- Possbly add information based of the grid location of certain items (like a chess board)
+

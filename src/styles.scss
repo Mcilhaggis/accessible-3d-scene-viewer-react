@@ -3,6 +3,35 @@
     height: 500px !important;
 }
 
+.holder {
+    width: 75%;
+    margin: auto;
+}
+
+.content {
+    padding-top: 10px;
+    transform: translate3d(calc(50% + 40px), 0, 0);
+    text-align: left;
+    background: #202035;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    pointer-events: none;
+
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: -40px;
+    height: 1px;
+    width: 40px;
+    background: black;
+    pointer-events: none;
+
+}
+
 .main-container {
     color: silver;
     position: relative;
