@@ -130,7 +130,6 @@ const SceneViewer = () => {
     function keypressDiscover() {
         // addEventListener('keyup', (e) => {
         e.preventDefault()
-        console.log(e)
         // check what key was pressed...
         if (e.code === 'ArrowRight' || e.code === 'ArrowLeft' || e.code === 'ArrowUp' || e.code === 'ArrowDown') {
             setKeyPressDirection(e.code.substring(5).toLowerCase())
@@ -159,7 +158,6 @@ const SceneViewer = () => {
             position={[0, 5, 8]}
         />
     }
-    console.log(Model)
     return (
         <>
             <div className="main-container" id="container1">

@@ -8,7 +8,6 @@ export default function Model({ ...props }) {
     const [clicked, setClicked] = useState(false)
     // Using this allows the focussed and hover state to be rendered visible
     const a11y = useA11y()
-    console.log(props)
     return (
 
         <mesh {...props}
