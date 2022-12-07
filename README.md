@@ -49,13 +49,10 @@ npx gltfjsx castle.gltf
 ```
 
 ## Wants: 
-- No screen reader description
-- Use Raycasting to interact with model on screen
 - Use JSON file to render model and inital positioning
 - Render if there is more than one on the webpage using its repsenctive json file to populate content.
-- Click on an area and use lookAt() to focus in on an area
-- alert to screen reader that interactive is visible and can be clicked
-
+- Click/or tab on an area and use lookAt() to focus in on an area
+- Reduced motion and reduced color scheme considerations
 
 ## Stretch goals
 - Having a test page for users to test lighting, camera position and scale 
@@ -63,15 +60,13 @@ npx gltfjsx castle.gltf
 - Saturation slider for offering colour contrast controls
 - When rotaing the item have the screen reader read out if new visuals/items are now visible
 
-## Concerns to tackle from Sketchfab integration:
-- No movement of object with keyboard when in orbit mode, and limited movement in first-person mode
-
-
 ## Features
 - Import data (images and controls) from json files
 - Custom built collapsable menu for clickable and tabbable key board interaction
-- Use arrow keys to rotate model
+- Use arrow keys to rotate and scale model
 - At 200% zoom container and visual are maintained
+- Screen reader descriptions added with A11y for each model on screen
+- - Interact with model on screen using mouse or keybaord to reveal labels, these are also read by the screen reader
 ---
 
 ## Resources
@@ -80,3 +75,6 @@ Royalty free textures found using: https://www.textures.com/
 ## Accessbility 
 - Possbly add information based of the grid location of certain items (like a chess board)
 
+AA11y allows us to navigate a second DOM that represents a version of the 3d rendering and use sematics that are required for assistive technologies. This library makes sure everything is placed in order and same 2d location as primary DOM. Aria live regions are available to give status updates on the page. 
+
+ Including prefers-reduced-motion & prefers-color-scheme = https://docs.pmnd.rs/a11y/access-user-preferences 
