@@ -11,54 +11,55 @@ import Model from './Model'
 
 import '../styles.scss'
 const SceneViewer = () => {
-    const [modelScale, setModelScale] = useState(0.021);
-    const [modelZPos, setModelZPos] = useState(0);
+    const [modelScale, setModelScale] = useState(1);
     const [modelXPos, setModelXPos] = useState(0);
+    const [modelYPos, setModelYPos] = useState(0);
+    const [modelZPos, setModelZPos] = useState(0);
+
+
     const [keypressDirection, setKeyPressDirection] = useState(null)
 
     useEffect(() => {
         console.log(keypressDirection)
         directionalMovement(keypressDirection);
-    }, [keypressDirection]); // 
+    }, [keypressDirection]);
 
+    {/* The X axis is red. The Y axis is green. The Z axis is blue. */ }
     const directionalMovement = (direction) => {
-        console.log(direction)
         switch (direction) {
             case 'down':
-                console.log('down')
-
                 setModelXPos(
-                    modelXPos + 1
+                    modelXPos + 0.02
                 );
                 setKeyPressDirection(null)
                 break;
             case 'up':
                 setModelXPos(
-                    modelXPos - 0.01
+                    modelXPos - 0.02
                 );
                 setKeyPressDirection(null)
                 break;
             case 'left':
-                setModelZPos(
-                    modelZPos - 0.01
+                setModelYPos(
+                    modelYPos - 0.02
                 )
                 setKeyPressDirection(null)
                 break;
             case 'right':
-                setModelZPos(
-                    modelZPos + 0.1
+                setModelYPos(
+                    modelYPos + 0.02
                 )
                 setKeyPressDirection(null)
                 break;
             case 'add':
                 setModelScale(
-                    modelScale + 1.1
+                    modelScale + 0.02
                 );
                 setKeyPressDirection(null)
                 break;
             case 'subtract':
                 setModelScale(
-                    modelScale - 0.9
+                    modelScale - 0.02
                 );
                 setKeyPressDirection(null)
                 break;
@@ -142,7 +143,7 @@ const SceneViewer = () => {
         }, [])
 
         return <perspectiveCamera ref={cameraRef}
-            position={[0, 0, 10]}
+            position={[0, 5, 8]}
         />
     }
 
@@ -150,26 +151,30 @@ const SceneViewer = () => {
 
     return (
         <>
-            <div className="main-container" id="container1"
-            >
+            <div className="main-container" id="container1">
                 <MenuPanel
                     directionalMovement={directionalMovement}
-
                 />
+
                 <Canvas id="scene-container"
                     tabIndex='0'
                     onKeyDown={(e) => {
-                        let slicedkeyCode = e.key.slice(5)
-                        directionalMovement(slicedkeyCode.toLowerCase())
-                    }
-                    }
+                        if (e.key === "-") {
+                            directionalMovement('subtract')
+                        } else if (e.key === "+") {
+                            directionalMovement('add')
+                        } else {
+                            let slicedkeyCode = e.key.slice(5)
+                            console.log('keycode', e.key)
+                            directionalMovement(slicedkeyCode.toLowerCase())
+                        }
+                    }}
                 >
-                      {/* The X axis is red. The Y axis is green. The Z axis is blue. */}
-                        <axesHelper args={[50]}/>
+                    <axesHelper args={[50]} />
                     <CustomCamera />
                     <mesh >
                         <gridHelper />
-                      
+
                         <OrbitControls />
                         <ambientLight
                             intensity={0.5}
@@ -180,7 +185,8 @@ const SceneViewer = () => {
                         />
                         <Suspense fallback={<Progress />}>
                             <group ref={ref}
-                                position={[modelXPos, 0, modelZPos]}
+                                rotation={[modelXPos, modelZPos, modelYPos]}
+                                scale={modelScale}
                             >
                                 <Dodecahedron
                                     position={[-2, 0, 0]}
