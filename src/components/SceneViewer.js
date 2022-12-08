@@ -9,9 +9,11 @@ import { A11yAnnouncer, A11y, useA11y, useUserPreferences } from '@react-three/a
 import MenuPanel from './MenuPanel'
 import Progress from './Progress'
 import Model from './Model'
+import Models from '../json/modelJSON.json'
 
 import '../styles.scss'
 const SceneViewer = () => {
+    let arrOfModels = Models.models
 
     const [a11yMessage, setA11yMessage] = useState('test');
     const [modelScale, setModelScale] = useState(1);
@@ -20,6 +22,7 @@ const SceneViewer = () => {
     const [modelZPos, setModelZPos] = useState(0);
     const [keypressDirection, setKeyPressDirection] = useState(null)
     const { a11yPrefersState } = useUserPreferences()
+    const ref = useRef()
 
 
     let targetDefault = [0, 5, 8]
@@ -90,8 +93,6 @@ const SceneViewer = () => {
             </group>
         )
     }
-    const ref = useRef()
-
 
     function CustomCamera(props) {
         const cameraRef = useRef()
@@ -152,51 +153,24 @@ const SceneViewer = () => {
                                 // Rotate the model group as a whole
                                 rotation={[modelXPos, modelZPos, modelYPos]}
                                 scale={modelScale} >
-                                {/* Wrap the items that should recieve focus in the A11y tag */}
-                                <A11y
-                                    role="togglebutton"
-                                    // This would be unique to each item on the canvas to indicate what it is or does
-                                    startPressed={false}
-                                    activationMsg="I am the FIRST shape"
-                                    deactivationMsg=""
-                                // actionCall={() => (setTargetLocation([0, 8, 8]))}
 
-                                >
-                                    <Model
-                                        position={[-2, 0, 0]}
-                                        labelContent="I am the FIRST shape"
-                                    // setTargetLocation={setTargetLocation}
+                                {arrOfModels.map((model, index) => {
+                                    return (<A11y
+                                        key={index}
+                                        role="togglebutton"
+                                        startPressed={false}
+                                        activationMsg={model.activationMsg}
+                                        deactivationMsg=""
+                                    >
+                                        <Model
+                                            position={model.position}
+                                            labelContent={model.labelContent}
+                                            labelDistance={model.labelDistance}
+                                        />
+                                    </A11y>
+                                    )
+                                })}
 
-                                    />
-                                </A11y>
-                                <A11y
-                                    role="togglebutton"
-                                    startPressed={false}
-                                    activationMsg="I am the SECOND shape"
-                                    deactivationMsg=""
-                                >
-                                    <Model
-                                        position={[0, -2, -3]}
-                                        labelContent="I am the SECOND shape"
-                                    // setTargetLocation={setTargetLocation}
-                                    />
-
-                                </A11y>
-                                <A11y
-                                    role="togglebutton"
-                                    startPressed={false}
-                                    // description="I am the THIRD shape"
-                                    activationMsg="I am the THIRD shape"
-                                    deactivationMsg=""
-                                >
-                                    <Model
-                                        position={[1, 2, 1]}
-                                        labelContent="I am the THIRD shape"
-                                        // setTargetLocation={setTargetLocation}
-                                        setA11yMessage={setA11yMessage}
-
-                                    />
-                                </A11y>
 
                             </group>
 
