@@ -4,20 +4,27 @@ import React, { Suspense, useState, useEffect, useRef, useLayoutEffect } from "r
 import { Canvas, useThree } from "@react-three/fiber"
 import { OrbitControls, Bounds, useBounds, Html } from '@react-three/drei'
 import { A11yAnnouncer, A11y, useA11y, useUserPreferences } from '@react-three/a11y'
+
+
 import MenuPanel from './MenuPanel'
 import Progress from './Progress'
 import Model from './Model'
-// import CustomCamera from './CustomCamera'
 
 import '../styles.scss'
-import { AlwaysStencilFunc } from "three";
 const SceneViewer = () => {
+
+    const [a11yMessage, setA11yMessage] = useState('test');
     const [modelScale, setModelScale] = useState(1);
     const [modelXPos, setModelXPos] = useState(0);
     const [modelYPos, setModelYPos] = useState(0);
     const [modelZPos, setModelZPos] = useState(0);
     const [keypressDirection, setKeyPressDirection] = useState(null)
     const { a11yPrefersState } = useUserPreferences()
+
+
+    let targetDefault = [0, 5, 8]
+    const [targetLocation, setTargetLocation] = useState(targetDefault);
+
 
     useEffect(() => {
         directionalMovement(keypressDirection);
@@ -85,59 +92,6 @@ const SceneViewer = () => {
     }
     const ref = useRef()
 
-    // function Dodecahedron({ ...props }) {
-    //     const [clicked, setClicked] = useState(false)
-    //     // Using this allows the focussed and hover state to be rendered visible
-    //     const a11y = useA11y()
-
-
-
-    //     return (
-    //         // // Wrap the items that should recieve focus in the A11y tag
-    //         // <A11y
-    //         //     role="button"
-    //         //     // This would be unique to each item on the canvas to indicate what it is or does
-    //         //     description="Show label"
-    //         //     // Is equal to title text and appears on hover of the item
-    //         //     showAltText
-    //         // >
-    //         <mesh {...props}
-    //             ref={shapeRef}
-    //             onClick={(e) => { setClicked(!clicked) }}
-    //         >
-    //             <dodecahedronGeometry />
-    //             <meshStandardMaterial
-    //                 roughness={0.75}
-    //                 color={a11y.focus || a11y.hover ? "yellow" : "green"}
-    //                 emissive={a11y.focus ? "#cc4444" : a11y.hover ? "yellow" : "green"}
-    //             />
-
-    //             {clicked || a11y.pressed && (
-    //                 <Html distanceFactor={10}>
-    //                     <div className="content"
-    //                         tabIndex="0">
-    //                         {props.labelContent}
-
-    //                     </div>
-    //                 </Html>
-    //             )
-    //             }
-    //         </mesh>
-    //         // </A11y >
-    //     )
-    // }
-
-    function keypressDiscover() {
-        // addEventListener('keyup', (e) => {
-        e.preventDefault()
-        // check what key was pressed...
-        if (e.code === 'ArrowRight' || e.code === 'ArrowLeft' || e.code === 'ArrowUp' || e.code === 'ArrowDown') {
-            setKeyPressDirection(e.code.substring(5).toLowerCase())
-        } else if (e.code === 'NumpadAdd' || e.code === 'NumpadSubtract') {
-            setKeyPressDirection(e.code.substring(6).toLowerCase())
-        } else { return }
-        // });
-    }
 
     function CustomCamera(props) {
         const cameraRef = useRef()
@@ -155,7 +109,7 @@ const SceneViewer = () => {
         }, [])
 
         return <perspectiveCamera ref={cameraRef}
-            position={[0, 5, 8]}
+            position={targetLocation}
         />
     }
     return (
@@ -183,7 +137,9 @@ const SceneViewer = () => {
                     <mesh >
                         <gridHelper />
 
-                        <OrbitControls />
+                        <OrbitControls
+                        // target={targetLocation}
+                        />
                         <ambientLight
                             intensity={0.5}
                         />
@@ -193,39 +149,53 @@ const SceneViewer = () => {
                         />
                         <Suspense fallback={<Progress />}>
                             <group ref={ref}
-                            // Rotate the model group as a whole
+                                // Rotate the model group as a whole
                                 rotation={[modelXPos, modelZPos, modelYPos]}
                                 scale={modelScale} >
                                 {/* Wrap the items that should recieve focus in the A11y tag */}
                                 <A11y
                                     role="togglebutton"
                                     // This would be unique to each item on the canvas to indicate what it is or does
-                                    description="I am the first shape"
                                     startPressed={false}
+                                    activationMsg="I am the FIRST shape"
+                                    deactivationMsg=""
+                                // actionCall={() => (setTargetLocation([0, 8, 8]))}
+
                                 >
                                     <Model
                                         position={[-2, 0, 0]}
-                                        labelContent="I am the first shape"
+                                        labelContent="I am the FIRST shape"
+                                    // setTargetLocation={setTargetLocation}
+
                                     />
                                 </A11y>
                                 <A11y
                                     role="togglebutton"
-
-                                    description="I am the second shape"
                                     startPressed={false}
+                                    activationMsg="I am the SECOND shape"
+                                    deactivationMsg=""
                                 >
                                     <Model
                                         position={[0, -2, -3]}
-                                        labelContent="I am the second shape" />
+                                        labelContent="I am the SECOND shape"
+                                    // setTargetLocation={setTargetLocation}
+                                    />
+
                                 </A11y>
                                 <A11y
                                     role="togglebutton"
-                                    description="I am the THIRD shape"
                                     startPressed={false}
+                                    // description="I am the THIRD shape"
+                                    activationMsg="I am the THIRD shape"
+                                    deactivationMsg=""
                                 >
                                     <Model
                                         position={[1, 2, 1]}
-                                        labelContent="I am the THIRD shape" />
+                                        labelContent="I am the THIRD shape"
+                                        // setTargetLocation={setTargetLocation}
+                                        setA11yMessage={setA11yMessage}
+
+                                    />
                                 </A11y>
 
                             </group>

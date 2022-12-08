@@ -14,6 +14,11 @@ webpack --watch
 ```
 This will create main file and basic set up to let the application run 
 
+To update gh pages run: npm run deploy
+Because we set this up the package.json like so:   
+```
+  "deploy": "gh-pages -d dist"
+```
 ## Packages Used
 - react
 - babel
@@ -53,6 +58,7 @@ npx gltfjsx castle.gltf
 - Render if there is more than one on the webpage using its repsenctive json file to populate content.
 - Click/or tab on an area and use lookAt() to focus in on an area
 - Reduced motion and reduced color scheme considerations
+- A small window with any labelled text that is static at the side of the screen
 
 ## Stretch goals
 - Having a test page for users to test lighting, camera position and scale 
@@ -78,3 +84,13 @@ Royalty free textures found using: https://www.textures.com/
 AA11y allows us to navigate a second DOM that represents a version of the 3d rendering and use sematics that are required for assistive technologies. This library makes sure everything is placed in order and same 2d location as primary DOM. Aria live regions are available to give status updates on the page. 
 
  Including prefers-reduced-motion & prefers-color-scheme = https://docs.pmnd.rs/a11y/access-user-preferences 
+
+
+## Future Development Ideas from this baseline
+ - Sticker placing game withere you drop itms on the plane and can switch out the stickers. You
+Drop a ball, a park bench, a slide, a flower into a scene - 
+
+https://www.littleworkshop.fr/
+
+
+

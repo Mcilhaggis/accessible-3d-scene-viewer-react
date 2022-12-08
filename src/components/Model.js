@@ -1,13 +1,14 @@
 
 import React, { useState, useRef } from 'react';
-import { useA11y} from '@react-three/a11y'
+import { useA11y } from '@react-three/a11y'
 import { Html } from '@react-three/drei'
 
 export default function Model({ ...props }) {
     const shapeRef = useRef()
     const [clicked, setClicked] = useState(false)
     // Using this allows the focussed and hover state to be rendered visible
-    const a11y = useA11y()
+    const a11y = useA11y()   
+
     return (
 
         <mesh {...props}
@@ -17,14 +18,21 @@ export default function Model({ ...props }) {
             <dodecahedronGeometry />
             <meshStandardMaterial
                 roughness={0.75}
-                color={a11y.focus || a11y.hover ? "yellow" : "green"}
-                emissive={a11y.focus ? "#cc4444" : a11y.hover ? "yellow" : "green"}
+                color={clicked || a11y.pressed ? "brown" : a11y.focus ? "blue" : a11y.hover ? "yellow" : "green"}
+                emissive={clicked || a11y.pressed ? "brown" : a11y.focus ? "blue" : a11y.hover ? "yellow" : "green"}
             />
 
             {clicked || a11y.pressed && (
                 <Html distanceFactor={10}>
-                    <div className="content"
-                        tabIndex="0">
+                    <div
+                        className="content"
+                        tabIndex="-1"
+                        aria-live="polite"
+                        aria-atomic="true"
+                        aria-relevant="additions"
+                        aria-label={props.labelContent}
+                    >
+
                         {props.labelContent}
 
                     </div>
