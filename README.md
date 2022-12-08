@@ -58,7 +58,7 @@ npx gltfjsx castle.gltf
 - Render if there is more than one on the webpage using its repsenctive json file to populate content.
 - Click/or tab on an area and use lookAt() to focus in on an area
 - Reduced motion and reduced color scheme considerations
-- A small window with any labelled text that is static at the side of the screen
+- A small window with any labelled text that is static at the side of the screen?
 
 ## Stretch goals
 - Having a test page for users to test lighting, camera position and scale 

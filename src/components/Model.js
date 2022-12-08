@@ -7,14 +7,14 @@ export default function Model({ ...props }) {
     const shapeRef = useRef()
     const [clicked, setClicked] = useState(false)
     // Using this allows the focussed and hover state to be rendered visible
-    const a11y = useA11y()   
+    const a11y = useA11y()
 
     return (
-
         <mesh {...props}
             ref={shapeRef}
             onClick={(e) => { setClicked(!clicked) }}
         >
+            {/* This is where I think the model would need to be imported seperately, everything else on this page is behaviour for interacting with the mesh  */}
             <dodecahedronGeometry />
             <meshStandardMaterial
                 roughness={0.75}
@@ -23,18 +23,12 @@ export default function Model({ ...props }) {
             />
 
             {clicked || a11y.pressed && (
-                <Html distanceFactor={10}>
+                <Html distanceFactor={props.labelDistance}>
                     <div
                         className="content"
                         tabIndex="-1"
-                        aria-live="polite"
-                        aria-atomic="true"
-                        aria-relevant="additions"
-                        aria-label={props.labelContent}
                     >
-
                         {props.labelContent}
-
                     </div>
                 </Html>
             )
