@@ -4,19 +4,24 @@
             "position": [-2, 0, 0],
             "labelContent": "I am the FIRST shape",
             "labelDistance": 8,
-            "activationMsg":"I am the FIRST shape"
+            "activationMsg":"I am the FIRST shape",
+            "geometry": "boxGeometry"
         },
         {
             "position": [0, -2, -3],
             "labelContent": "I am the SECOND shape",
             "labelDistance": 8,
-            "activationMsg":"I am the SECOND shape"
+            "activationMsg":"I am the SECOND shape",
+            "geometry": "dodecahedronGeometry"
+
         },
         {
             "position": [1, 2, 1],
             "labelContent": "I am the THIRD shape",
             "labelDistance": 8,
-            "activationMsg":"I am the THIRD shape"
+            "activationMsg":"I am the THIRD shape",
+            "geometry": "coneGeometry"
+
         }
     ]
 

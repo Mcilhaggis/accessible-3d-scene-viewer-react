@@ -9,25 +9,23 @@ import { A11yAnnouncer, A11y, useA11y, useUserPreferences } from '@react-three/a
 import MenuPanel from './MenuPanel'
 import Progress from './Progress'
 import Model from './Model'
+import Donut from './Donut-combined'
 import Models from '../json/modelJSON.json'
 
 import '../styles.scss'
 const SceneViewer = () => {
     let arrOfModels = Models.models
 
-    const [a11yMessage, setA11yMessage] = useState('test');
     const [modelScale, setModelScale] = useState(1);
     const [modelXPos, setModelXPos] = useState(0);
     const [modelYPos, setModelYPos] = useState(0);
     const [modelZPos, setModelZPos] = useState(0);
-    const [keypressDirection, setKeyPressDirection] = useState(null)
-    const { a11yPrefersState } = useUserPreferences()
     const ref = useRef()
-
-
     let targetDefault = [0, 5, 8]
     const [targetLocation, setTargetLocation] = useState(targetDefault);
-
+    const [keypressDirection, setKeyPressDirection] = useState(null)
+    const [objectFocus, setObjectFocus] = useState(null)
+    const { a11yPrefersState } = useUserPreferences()
 
     useEffect(() => {
         directionalMovement(keypressDirection);
@@ -77,6 +75,11 @@ const SceneViewer = () => {
         }
     }
 
+    function navigateObjWithMenu(direction) {
+        // console.log(direction)
+
+    }
+
     function SelectToZoom({ children }) {
         const api = useBounds()
         return (
@@ -118,6 +121,7 @@ const SceneViewer = () => {
             <div className="main-container" id="container1">
                 <MenuPanel
                     directionalMovement={directionalMovement}
+                    navigateObjWithMenu={navigateObjWithMenu}
                 />
 
                 <Canvas id="scene-container"
@@ -131,6 +135,7 @@ const SceneViewer = () => {
                             let slicedkeyCode = e.key.slice(5)
                             directionalMovement(slicedkeyCode.toLowerCase())
                         }
+
                     }}
                 >
                     <axesHelper args={[50]} />
@@ -138,9 +143,8 @@ const SceneViewer = () => {
                     <mesh >
                         <gridHelper />
 
-                        <OrbitControls
-                        // target={targetLocation}
-                        />
+                        <OrbitControls/>
+                        
                         <ambientLight
                             intensity={0.5}
                         />
@@ -161,17 +165,31 @@ const SceneViewer = () => {
                                         startPressed={false}
                                         activationMsg={model.activationMsg}
                                         deactivationMsg=""
+                                        tabindex="1"
                                     >
                                         <Model
+                                            key={index}
                                             position={model.position}
                                             labelContent={model.labelContent}
                                             labelDistance={model.labelDistance}
+                                            geometry={model.geometry}
                                         />
                                     </A11y>
                                     )
                                 })}
 
-
+                                <A11y
+                                key={4}
+                                    role="togglebutton"
+                                    startPressed={false}
+                                    activationMsg="I am a donut"
+                                    deactivationMsg=""
+                                    tabindex="1">
+                                    <Donut
+                                        labelContent="I am a donut"
+                                        labelDistance={7}
+                                    />
+                                </A11y>
                             </group>
 
                         </Suspense>
