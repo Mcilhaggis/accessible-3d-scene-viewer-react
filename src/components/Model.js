@@ -8,14 +8,15 @@ export default function Model({ ...props }) {
     const [clicked, setClicked] = useState(false)
     // Using this allows the focussed and hover state to be rendered visible
     const a11y = useA11y()
-
     return (
         <mesh {...props}
             ref={shapeRef}
             onClick={(e) => { setClicked(!clicked) }}
+     
         >
             {/* This is where I think the model would need to be imported seperately, everything else on this page is behaviour for interacting with the mesh  */}
-            <dodecahedronGeometry />
+            <props.geometry />
+            
             <meshStandardMaterial
                 roughness={0.75}
                 color={clicked || a11y.pressed ? "brown" : a11y.focus ? "blue" : a11y.hover ? "yellow" : "green"}

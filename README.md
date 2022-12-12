@@ -43,36 +43,37 @@ To create a css file from the scss files, from the root folder run:
 To render glTF files as 2.0 version, which renders, meshes, shadings and animations differently. 
 - gltf-pipeline
 
-Once you have your original gltf file, go to the folder it's in and run the following to process and rename the file. 
+Once you have your original gltf file, go to the folder it's in and run the following to process and rename the file. I think if its already a 2.0 glft file skip this step
 
 ```
- gltf-pipeline -i src/img/castle_of_loarre/scene.gltf -o dist/assets/gltf/castle.gltf -d
+ gltf-pipeline -i src/img/donut-pre-combine-layers.gltf -o dist/assets/gltf/donut.gltf -d
 ```
 Convert the new gltf file into a jsx file with the following command.
 ```
-npx gltfjsx castle.gltf
+npx gltfjsx donut.gltf
 ```
 
 ## Wants: 
-- Use JSON file to render model and inital positioning
-- Render if there is more than one on the webpage using its repsenctive json file to populate content.
+- Render if there is more than one container on the webpage using its repsective json file to populate content.
 - Click/or tab on an area and use lookAt() to focus in on an area
 - Reduced motion and reduced color scheme considerations
 - A small window with any labelled text that is static at the side of the screen?
+- Insert GLTF model and interact with the different parts of a model 
 
 ## Stretch goals
 - Having a test page for users to test lighting, camera position and scale 
 - Convert to Typescript
 - Saturation slider for offering colour contrast controls
-- When rotaing the item have the screen reader read out if new visuals/items are now visible
+- When rotaing the item have the screen reader read out if new visuals/items are now visible (raycasting)
 
 ## Features
-- Import data (images and controls) from json files
-- Custom built collapsable menu for clickable and tabbable key board interaction
 - Use arrow keys to rotate and scale model
-- At 200% zoom container and visual are maintained
+- Custom built collapsable menu for clickable and tabbable key board interaction
 - Screen reader descriptions added with A11y for each model on screen
-- - Interact with model on screen using mouse or keybaord to reveal labels, these are also read by the screen reader
+- Interact with model on screen using mouse or keybaord to reveal labels, these are also read by the screen reader
+- Uses JSON file to render model, labels and inital positioning
+- At 200% zoom container and visual are maintained
+
 ---
 
 ## Resources
@@ -81,7 +82,7 @@ Royalty free textures found using: https://www.textures.com/
 ## Accessbility 
 - Possbly add information based of the grid location of certain items (like a chess board)
 
-AA11y allows us to navigate a second DOM that represents a version of the 3d rendering and use sematics that are required for assistive technologies. This library makes sure everything is placed in order and same 2d location as primary DOM. Aria live regions are available to give status updates on the page. 
+A11y allows us to navigate a second DOM that represents a version of the 3d rendering and use sematics that are required for assistive technologies. This library makes sure everything is placed in order and same 2d location as primary DOM. Aria live regions are available to give status updates on the page. 
 
  Including prefers-reduced-motion & prefers-color-scheme = https://docs.pmnd.rs/a11y/access-user-preferences 
 
