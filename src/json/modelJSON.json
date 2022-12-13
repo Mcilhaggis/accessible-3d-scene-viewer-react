@@ -12,8 +12,8 @@
                     "material": "Material.002",
                     "children": [
                         {
-                            "geometry": "nodes.Icing.geometry",
-                            "material": "materials['Material.001']"
+                            "geometry": "Icing",
+                            "material": "Material.001"
                         }
                     ]
                 }

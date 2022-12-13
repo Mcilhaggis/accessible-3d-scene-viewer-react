@@ -14,20 +14,30 @@ export default function Model(props) {
   return (
     <group {...props} dispose={null}>
       {meshArr.map((mesh, index) => {
-        // let geomtery = nodes.mesh.geomtery
-        console.log(nodes[mesh.geometry]["geometry"])
         return (
           <>
-          <mesh
-            key={index}
-            geometry={nodes[mesh.geometry]["geometry"]}
-            material={materials[mesh.material]}
-          >
-          </mesh>
+            <mesh
+              key={index}
+              geometry={nodes[mesh.geometry]["geometry"]}
+              material={materials[mesh.material]}
+            >
+              {mesh.children ?
+                mesh.children.map((mesh, index) => {
+                  return (
+                    <mesh
+                      key={index}
+                      geometry={nodes[mesh.geometry]["geometry"]}
+                      material={materials[mesh.material]}
+                    >
+                    </mesh>
+                  )
+                })
+                : console.log("no children ")}
+            </mesh>
           </>
-  )
+        )
 
-})}
+      })}
     </group >
     // <group {...props} dispose={null}>
     //   <mesh geometry={nodes.Donut.geometry} material={materials['Material.002']}>
