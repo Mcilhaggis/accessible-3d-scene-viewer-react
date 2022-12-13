@@ -57,7 +57,6 @@ export default function Model(props) {
                       geometry={nodes[mesh.geometry]["geometry"]}
                       material={materials[mesh.material]}
                     />
-
                   )
                 })
                 : console.log("no children ")}

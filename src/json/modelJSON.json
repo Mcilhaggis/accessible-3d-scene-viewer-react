@@ -9,7 +9,7 @@
                     "material": "Material.002",
                     "A11yMessage": "I am the base of the donut",
                     "labelContent": "I am the base of the donut",
-                    "labelDistance": 8,
+                    "labelDistance": 10,
 
                     "children": [
                         {
@@ -17,7 +17,7 @@
                             "material": "Material.001",
                             "A11yMessage": "I am icing on the donut",
                             "labelContent": "I am icing on the donut",
-                            "labelDistance": 8
+                            "labelDistance": 5
 
                         }
                     ]
