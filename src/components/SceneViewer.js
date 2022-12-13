@@ -9,13 +9,14 @@ import { A11yAnnouncer, A11y, useA11y, useUserPreferences } from '@react-three/a
 import MenuPanel from './MenuPanel'
 import Progress from './Progress'
 import Model from './Model'
-import Donut from './Donut-combined'
+
 import Models from '../json/modelJSON.json'
 
 import '../styles.scss'
 const SceneViewer = () => {
     let arrOfModels = Models.models
-
+    console.log(Model)
+    console.log(arrOfModels)
     const [modelScale, setModelScale] = useState(1);
     const [modelXPos, setModelXPos] = useState(0);
     const [modelYPos, setModelYPos] = useState(0);
@@ -74,12 +75,9 @@ const SceneViewer = () => {
                 return;
         }
     }
-
     function navigateObjWithMenu(direction) {
         // console.log(direction)
-
     }
-
     function SelectToZoom({ children }) {
         const api = useBounds()
         return (
@@ -143,8 +141,8 @@ const SceneViewer = () => {
                     <mesh >
                         <gridHelper />
 
-                        <OrbitControls/>
-                        
+                        <OrbitControls />
+
                         <ambientLight
                             intensity={0.5}
                         />
@@ -158,7 +156,7 @@ const SceneViewer = () => {
                                 rotation={[modelXPos, modelZPos, modelYPos]}
                                 scale={modelScale} >
 
-                                {arrOfModels.map((model, index) => {
+                                {/* {arrOfModels.map((model, index) => {
                                     return (<A11y
                                         key={index}
                                         role="togglebutton"
@@ -176,20 +174,24 @@ const SceneViewer = () => {
                                         />
                                     </A11y>
                                     )
+                                })} */}
+
+                                {arrOfModels.map((model, index) => {
+                                    return (
+                                        <Model
+                                            key={index}
+                                            position={model.position}
+                                            labelContent={model.labelContent}
+                                            labelDistance={model.labelDistance}
+                                            meshes={model.meshes}
+                                            gltfFile={model.gltf}
+                                        />
+                                    )
                                 })}
 
-                                <A11y
-                                key={4}
-                                    role="togglebutton"
-                                    startPressed={false}
-                                    activationMsg="I am a donut"
-                                    deactivationMsg=""
-                                    tabindex="1">
-                                    <Donut
-                                        labelContent="I am a donut"
-                                        labelDistance={7}
-                                    />
-                                </A11y>
+
+
+
                             </group>
 
                         </Suspense>
