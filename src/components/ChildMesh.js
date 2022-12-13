@@ -15,8 +15,6 @@ export default function ChildMesh(props) {
 
     console.log(clicked)
     return (
-
-
         <A11y
             key={props.index}
             role="togglebutton"
@@ -35,13 +33,24 @@ export default function ChildMesh(props) {
                 material={props.material}
                 ref={childMeshRef}
             >
-                {a11y.focus ? <meshStandardMaterial
+                {clicked || a11y.focus ? <meshStandardMaterial
                     attach="material"
-                    color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "yellow" : "green"}
+                    color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "grey" : "green"}
                 /> : ""}
 
-                {/* Should have || A11y clicked but not wokring correctly- redcues clickable space to the absolute div that holds the alabels original position */}
-                {clicked || a11y.pressed && (
+                {clicked && (
+
+                    <Html distanceFactor={mesh.labelDistance}>
+                        <div
+                            className="content"
+                            tabIndex="-1"
+                        >
+                            {mesh.labelContent}
+                        </div>
+                    </Html>
+                )}
+{/* duplicate code for tab and enter clicking and mouse clicking - could be reduced but I can't get them to work in one  */}
+                {a11y.pressed && (
 
                     <Html distanceFactor={mesh.labelDistance}>
                         <div
