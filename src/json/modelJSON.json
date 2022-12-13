@@ -2,18 +2,21 @@
     "models": [
         {
             "gltf": "../../dist/assets/gltf/donut-combined.gltf",
-            "position": [-2, 0, 0 ],
+            "position": [0, 0, 0 ],
             "labelContent": "Model of a donut",
             "labelDistance": 8,
-            "activationMsg": "I am the SECOND shape",
+            "activationMsg": "Model of a donut",
             "meshes": [
                 {
                     "geometry": "Donut",
                     "material": "Material.002",
+                    "A11yMessage": "I am the base of the donut",
                     "children": [
                         {
                             "geometry": "Icing",
-                            "material": "Material.001"
+                            "material": "Material.001",
+                            "A11yMessage": "I am icing on the donut"
+
                         }
                     ]
                 }
