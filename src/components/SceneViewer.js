@@ -15,8 +15,7 @@ import Models from '../json/modelJSON.json'
 import '../styles.scss'
 const SceneViewer = () => {
     let arrOfModels = Models.models
-    console.log(Model)
-    console.log(arrOfModels)
+
     const [modelScale, setModelScale] = useState(1);
     const [modelXPos, setModelXPos] = useState(0);
     const [modelYPos, setModelYPos] = useState(0);
@@ -179,7 +178,7 @@ const SceneViewer = () => {
                                 {arrOfModels.map((model, index) => {
                                     return (
                                         <Model
-                                            key={index}
+                                            key={`Model-` + index}
                                             position={model.position}
                                             labelContent={model.labelContent}
                                             labelDistance={model.labelDistance}
