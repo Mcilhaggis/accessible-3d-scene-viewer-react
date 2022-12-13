@@ -3,19 +3,21 @@
         {
             "gltf": "../../dist/assets/gltf/donut-combined.gltf",
             "position": [0, 0, 0 ],
-            "labelContent": "Model of a donut",
-            "labelDistance": 8,
-            "activationMsg": "Model of a donut",
             "meshes": [
                 {
                     "geometry": "Donut",
                     "material": "Material.002",
                     "A11yMessage": "I am the base of the donut",
+                    "labelContent": "I am the base of the donut",
+                    "labelDistance": 8,
+
                     "children": [
                         {
                             "geometry": "Icing",
                             "material": "Material.001",
-                            "A11yMessage": "I am icing on the donut"
+                            "A11yMessage": "I am icing on the donut",
+                            "labelContent": "I am icing on the donut",
+                            "labelDistance": 8
 
                         }
                     ]
