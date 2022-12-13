@@ -14,7 +14,11 @@ webpack --watch
 ```
 This will create main file and basic set up to let the application run 
 
-To update gh pages run: npm run deploy
+To update gh pages run: 
+
+npm run deploy
+
+
 Because we set this up the package.json like so:   
 ```
   "deploy": "gh-pages -d dist"

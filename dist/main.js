@@ -653,7 +653,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((module) => {
 
 "use strict";
-eval("module.exports = JSON.parse('{\"models\":[{\"gltf\":\"../../dist/assets/gltf/donut-combined.gltf\",\"position\":[0,0,0],\"meshes\":[{\"geometry\":\"Donut\",\"material\":\"Material.002\",\"A11yMessage\":\"I am the base of the donut\",\"labelContent\":\"I am the base of the donut\",\"labelDistance\":8,\"children\":[{\"geometry\":\"Icing\",\"material\":\"Material.001\",\"A11yMessage\":\"I am icing on the donut\",\"labelContent\":\"I am icing on the donut\",\"labelDistance\":8}]}]}]}');\n\n//# sourceURL=webpack://three-js-react-app/./src/json/modelJSON.json?");
+eval("module.exports = JSON.parse('{\"models\":[{\"gltf\":\"../../dist/assets/gltf/donut-combined.gltf\",\"position\":[0,0,0],\"meshes\":[{\"geometry\":\"Donut\",\"material\":\"Material.002\",\"A11yMessage\":\"I am the base of the donut\",\"labelContent\":\"I am the base of the donut\",\"labelDistance\":10,\"children\":[{\"geometry\":\"Icing\",\"material\":\"Material.001\",\"A11yMessage\":\"I am icing on the donut\",\"labelContent\":\"I am icing on the donut\",\"labelDistance\":5}]}]}]}');\n\n//# sourceURL=webpack://three-js-react-app/./src/json/modelJSON.json?");
 
 /***/ })
 
