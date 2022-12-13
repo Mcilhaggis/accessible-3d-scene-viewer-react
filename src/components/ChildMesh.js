@@ -12,6 +12,8 @@ export default function ChildMesh(props) {
     const a11y = useA11y()
 
     let mesh = props.mesh
+
+    console.log(clicked)
     return (
 
 
@@ -22,10 +24,10 @@ export default function ChildMesh(props) {
             activationMsg={mesh.A11yMessage}
             deactivationMsg=""
             tabindex="-1"
-
         >
             <mesh
                 onClick={(e) => {
+                    e.stopPropagation();
                     setClicked(!clicked)
                 }}
                 key={`childMesh` + props.index}
@@ -33,15 +35,13 @@ export default function ChildMesh(props) {
                 material={props.material}
                 ref={childMeshRef}
             >
-                {clicked ? <meshStandardMaterial
+                {a11y.focus ? <meshStandardMaterial
                     attach="material"
-                    color="purple"
-                    // roughness={0.3}
-                    // metalness={1.0}
+                    color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "yellow" : "green"}
                 /> : ""}
 
                 {/* Should have || A11y clicked but not wokring correctly- redcues clickable space to the absolute div that holds the alabels original position */}
-                {clicked && (
+                {clicked || a11y.pressed && (
 
                     <Html distanceFactor={mesh.labelDistance}>
                         <div
