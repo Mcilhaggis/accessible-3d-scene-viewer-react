@@ -8,6 +8,8 @@ import { A11y, useA11y } from '@react-three/a11y'
 import { Html } from '@react-three/drei'
 import ChildMesh from './ChildMesh'
 
+
+
 let gltf;
 export default function Model(props) {
   gltf = props.gltfFile
@@ -34,8 +36,18 @@ export default function Model(props) {
               geometry={nodes[mesh.geometry]["geometry"]}
               material={materials[mesh.material]}
               ref={meshRef}
-              onClick={(e) => { setClicked(!clicked)}}
+              onClick={(e) => { 
+                e.stopPropagation()
+                setClicked(!clicked)}}
             >
+                {clicked ? <meshStandardMaterial
+                    attach="material"
+                    color="purple"
+                    // roughness={0.3}
+                    // metalness={1.0}
+                /> : ""}
+
+              {/* Should have || A11y clicked but not wokring correctly- redcues clickable space to the absolute div that holds the alabels original position */}
               {clicked && (
                 <Html distanceFactor={mesh.labelDistance}>
                   <div
