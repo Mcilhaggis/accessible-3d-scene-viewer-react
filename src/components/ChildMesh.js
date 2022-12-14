@@ -13,16 +13,16 @@ export default function ChildMesh(props) {
 
     let mesh = props.mesh
 
-    console.log(clicked)
+    console.log(a11y, mesh.labelContent, mesh.A11yMessage)
     return (
-        <A11y
-            key={props.index}
-            role="togglebutton"
-            startPressed={false}
-            activationMsg={mesh.A11yMessage}
-            deactivationMsg=""
-            tabindex="-1"
-        >
+        // <A11y
+        //     key={props.index}
+        //     role="togglebutton"
+        //     startPressed={false}
+        //     // activationMsg={mesh.A11yMessage}
+        //     deactivationMsg=""
+        //     tabindex="-1"
+        // >
             <mesh
                 onClick={(e) => {
                     e.stopPropagation();
@@ -33,7 +33,7 @@ export default function ChildMesh(props) {
                 material={props.material}
                 ref={childMeshRef}
             >
-                {clicked || a11y.focus ? <meshStandardMaterial
+                {clicked || a11y.focus || a11y.hover || a11y.pressed ? <meshStandardMaterial
                     attach="material"
                     color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "grey" : "green"}
                 /> : ""}
@@ -49,7 +49,7 @@ export default function ChildMesh(props) {
                         </div>
                     </Html>
                 )}
-{/* duplicate code for tab and enter clicking and mouse clicking - could be reduced but I can't get them to work in one  */}
+                {/* duplicate code for tab and enter clicking and mouse clicking - could be reduced but I can't get them to work in one  */}
                 {a11y.pressed && (
 
                     <Html distanceFactor={mesh.labelDistance}>
@@ -62,6 +62,6 @@ export default function ChildMesh(props) {
                     </Html>
                 )}
             </mesh>
-        </A11y>
+        // </A11y>
     )
 }
