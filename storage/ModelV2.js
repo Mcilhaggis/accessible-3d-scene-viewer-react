@@ -2,12 +2,29 @@
 import React, { useState, useRef } from 'react';
 import { useA11y } from '@react-three/a11y'
 import { Html } from '@react-three/drei'
+import { proxy, useSnapshot } from "valtio"
+
+
 
 export default function Model({ ...props }) {
+    
     const shapeRef = useRef()
     const [clicked, setClicked] = useState(false)
     // Using this allows the focussed and hover state to be rendered visible
     const a11y = useA11y()
+
+
+    // function Picker() {
+    //     const snap = useSnapshot(state)
+    //     return (
+    //       <div style={{ display: snap.current ? "block" : "none" }}>
+    //         <HexColorPicker className="picker" color={snap.items[snap.current]} onChange={(color) => (state.items[snap.current] = color)} />
+    //         <h1>{snap.current}</h1>
+    //       </div>
+    //     )
+    //   }
+
+
     return (
         <mesh {...props}
             ref={shapeRef}

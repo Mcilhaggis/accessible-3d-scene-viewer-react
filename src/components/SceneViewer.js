@@ -27,6 +27,8 @@ const SceneViewer = () => {
     const [objectFocus, setObjectFocus] = useState(null)
     const { a11yPrefersState } = useUserPreferences()
 
+
+    
     useEffect(() => {
         directionalMovement(keypressDirection);
     }, [keypressDirection]);
@@ -155,26 +157,6 @@ const SceneViewer = () => {
                                 rotation={[modelXPos, modelZPos, modelYPos]}
                                 scale={modelScale} >
 
-                                {/* {arrOfModels.map((model, index) => {
-                                    return (<A11y
-                                        key={index}
-                                        role="togglebutton"
-                                        startPressed={false}
-                                        activationMsg={model.activationMsg}
-                                        deactivationMsg=""
-                                        tabindex="1"
-                                    >
-                                        <Model
-                                            key={index}
-                                            position={model.position}
-                                            labelContent={model.labelContent}
-                                            labelDistance={model.labelDistance}
-                                            geometry={model.geometry}
-                                        />
-                                    </A11y>
-                                    )
-                                })} */}
-
                                 {arrOfModels.map((model, index) => {
                                     return (
                                         <Model
@@ -187,9 +169,6 @@ const SceneViewer = () => {
                                         />
                                     )
                                 })}
-
-
-
 
                             </group>
 
