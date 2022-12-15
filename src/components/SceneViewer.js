@@ -2,8 +2,8 @@
 // Entry point of react App
 import React, { Suspense, useState, useEffect, useRef, useLayoutEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber"
-import { OrbitControls, Bounds, useBounds, Html } from '@react-three/drei'
-import { A11yAnnouncer, A11y, useA11y, useUserPreferences } from '@react-three/a11y'
+import { OrbitControls, useBounds } from '@react-three/drei'
+import { A11yAnnouncer, useUserPreferences } from '@react-three/a11y'
 
 
 import MenuPanel from './MenuPanel'
