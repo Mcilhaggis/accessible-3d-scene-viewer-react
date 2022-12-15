@@ -8,7 +8,6 @@ import { A11y, useA11y } from '@react-three/a11y'
 
 export default function Model(props) {
   let meshArr = props.meshes
-  const a11y = useA11y()
 
   return (
     <>
@@ -19,9 +18,10 @@ export default function Model(props) {
               key={props.index}
               role="togglebutton"
               startPressed={false}
-              // activationMsg={parentProperties.A11yMessage}
+              activationMsg={mesh.A11yMessage}
               deactivationMsg=""
               tabindex="-1"
+              a11yElStyle={{ pointerEvents: 'none' }}
             >
               <ParentMesh
                 index={index}

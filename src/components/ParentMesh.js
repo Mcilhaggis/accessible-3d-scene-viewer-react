@@ -8,8 +8,6 @@ import { A11y, useA11y } from '@react-three/a11y'
 import { Html } from '@react-three/drei'
 import ChildMesh from './ChildMesh'
 
-
-
 let gltf;
 export default function ParentMesh(props) {
   let parentProperties = props.mesh
@@ -17,51 +15,70 @@ export default function ParentMesh(props) {
 
   const { nodes, materials } = useGLTF(gltf)
   const [clicked, setClicked] = useState(false)
+  const [hovered, setHovered] = useState(false)
+
   const meshRef = useRef()
   // Using this allows the focussed and hover state to be rendered visible
   const a11y = useA11y()
-  console.log('parent Mesh', a11y)
+  console.log('parentMesh', a11y)
   return (
     <>
-     {/* <group {...props} dispose={null} scale={50} > */}
-      {/* <A11y
-        key={props.index}
-        role="togglebutton"
-        startPressed={false}
-        activationMsg={parentProperties.A11yMessage}
-        deactivationMsg=""
-        tabindex="-1"
-      > */}
-        <mesh
-          key={`containerMesh` + props.index}
-          geometry={nodes[parentProperties.geometry]["geometry"]}
-          material={materials[parentProperties.material]}
-          ref={meshRef}
-          onClick={(e) => {
-            // e.stopPropagation()
-            setClicked(!clicked)
+      <mesh
+        key={`containerMesh` + props.index}
+        geometry={nodes[parentProperties.geometry]["geometry"]}
+        material={materials[parentProperties.material]}
+        ref={meshRef}
+        onClick={(e) => {
+          e.stopPropagation();
+          setClicked(!clicked)
+          if (a11y.pressed) {
+            a11y.pressed = false
+          } else {
+            a11y.pressed = true
+          }
+        }}
+        onPointerOver={e => {
+          e.stopPropagation()
+          // Trigger re-render
+          setHovered(true)
+          // Set for a11y users
+          a11y.hover = true
 
-          }}
-          onFocus={(e) => { console.log("focus recieved") }}
-        >
-          {clicked || a11y.focus || a11y.hover || a11y.pressed ? <meshStandardMaterial
-            attach="material"
-            color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "grey" : "green"}
-          /> : ""}
+        }}
+        onPointerLeave={e => {
+          e.stopPropagation()
+          setHovered(false)
+          a11y.hover = false
+        }}
+      >
+        {clicked || a11y.focus || hovered || a11y.hover || a11y.pressed ? <meshStandardMaterial
+          attach="material"
+          color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "grey" : ""}
+        /> : ""}
 
-          {/* Should have || A11y pressed but not wokring correctly- redcues clickable space to the absolute div that holds the alabels original position */}
-          {clicked && (
-            <Html distanceFactor={parentProperties.labelDistance}>
-              <div
-                className="content"
-                tabIndex="-1"
-              >
-                {parentProperties.labelContent}
-              </div>
-            </Html>
-          )}
-        </mesh>
-      {/* </A11y> */}
+        {clicked && (
+          <Html distanceFactor={parentProperties.labelDistance}>
+            <div
+              className="content"
+              tabIndex="-1"
+            >
+              {parentProperties.labelContent}
+            </div>
+          </Html>
+        )}
+        {/* duplicate code for tab and enter clicking and mouse clicking - could be reduced but I can't get them to work in one  */}
+        {a11y.pressed && (
+
+          <Html distanceFactor={parentProperties.labelDistance}>
+            <div
+              className="content"
+              tabIndex="-1"
+            >
+              {parentProperties.labelContent}
+            </div>
+          </Html>
+        )}
+      </mesh>
       {parentProperties.children ?
         parentProperties.children.map((mesh, index) => {
           return (
@@ -72,6 +89,8 @@ export default function ParentMesh(props) {
               activationMsg={mesh.A11yMessage}
               deactivationMsg=""
               tabindex="-1"
+            a11yElStyle={{ pointerEvents: 'none' }}
+
             >
               <ChildMesh
                 key={`childMesh` + index}
@@ -84,8 +103,7 @@ export default function ParentMesh(props) {
           )
         })
         : console.log("no children ")}
-</>
-    // </group >
+    </>
   )
 }
 
