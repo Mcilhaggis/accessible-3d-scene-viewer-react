@@ -20,7 +20,7 @@ export default function ParentMesh(props) {
   const meshRef = useRef()
   // Using this allows the focussed and hover state to be rendered visible
   const a11y = useA11y()
-  console.log('parentMesh', a11y)
+  // console.log('parentMesh', a11y)
   return (
     <>
       <mesh

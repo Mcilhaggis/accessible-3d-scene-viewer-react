@@ -6,11 +6,12 @@ import { OrbitControls, useBounds } from '@react-three/drei'
 import { A11yAnnouncer, useUserPreferences } from '@react-three/a11y'
 
 
+
 import MenuPanel from './MenuPanel'
 import Progress from './Progress'
 import Model from './Model'
 
-import Models from '../json/modelJSON.json'
+import Models from '../data/modelJSON.json'
 
 import '../styles.scss'
 const SceneViewer = () => {

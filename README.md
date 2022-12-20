@@ -50,19 +50,22 @@ To render glTF files as 2.0 version, which renders, meshes, shadings and animati
 Once you have your original gltf file, go to the folder it's in and run the following to process and rename the file. I think if its already a 2.0 glft file skip this step
 
 ```
- gltf-pipeline -i src/img/donut-pre-combine-layers.gltf -o dist/assets/gltf/donut.gltf -d
+ gltf-pipeline -i src/img/donutV2.gltf -o dist/assets/gltf/donutV2.gltf -d
 ```
-Convert the new gltf file into a jsx file with the following command.
+Navigate to the folder hosting the gltf file and convert the new gltf file into a jsx file with the following command.
 ```
-npx gltfjsx donut.gltf
+npx gltfjsx double-mushroom.gltf
 ```
+
+Export blender file as glft (combined)
+Drop into gltf folder - shouldn't need to run a node command
+
 
 ## Wants: 
 - Render if there is more than one container on the webpage using its repsective json file to populate content.
 - Click/or tab on an area and use lookAt() to focus in on an area
 - Reduced motion and reduced color scheme considerations
 - A small window with any labelled text that is static at the side of the screen?
-- Insert GLTF model and interact with the different parts of a model 
 
 ## Stretch goals
 - Having a test page for users to test lighting, camera position and scale 
@@ -77,7 +80,7 @@ npx gltfjsx donut.gltf
 - Interact with model on screen using mouse or keybaord to reveal labels, these are also read by the screen reader
 - Uses JSON file to render model, labels and inital positioning
 - At 200% zoom container and visual are maintained
-
+- Insert GLTF model and interact with the different parts of a model
 ---
 
 ## Resources
