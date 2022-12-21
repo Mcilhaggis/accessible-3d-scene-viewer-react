@@ -15,7 +15,7 @@ export default function processGltf() {
         if (gltf.nodes[property].name === "Scene") {
             continue
         } else {
-            // if it has a parent...
+            // if it has a parent... 
             for (const childProperty in gltf.nodes[property]) {
                 if (childProperty == 'parent') {
                     // console.log('hit 1')
