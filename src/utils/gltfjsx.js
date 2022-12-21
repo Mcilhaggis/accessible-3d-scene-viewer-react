@@ -18,15 +18,17 @@ export default function processGltf() {
             // if it has a parent...
             for (const childProperty in gltf.nodes[property]) {
                 if (childProperty == 'parent') {
-
+                    // console.log('hit 1')
                     let parentMeshName = gltf.nodes[property][childProperty].name
                     // and that parent is Scene, it is a main container for child meshes to make up an object
-                    if (parentMeshName == 'Scene') {
+                    if (parentMeshName == 'Scene' && !modelInstanceArr.some(e => e.name === gltf.nodes[property].name)) {
+                        // the model is rendering twice, to avoid adding too many items to the array until figured issue out - addeed this some function catch
                         Object.create(parentMesh);
                         // Store it as a parent object
                         parentMesh.name = gltf.nodes[property].name
                         modelInstanceArr.push(parentMesh)
-                    } else {
+                    }
+                    else {
                         // otherwise it has a true parent container that it needs to sit within to render in the scene
                         for (var i = 0; i < modelInstanceArr.length; i++) {
                             if (parentMeshName === modelInstanceArr[i].name) {
@@ -41,7 +43,3 @@ export default function processGltf() {
     }
     console.log(modelInstanceArr)
 }
-
-
-
-

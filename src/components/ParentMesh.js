@@ -16,6 +16,7 @@ export default function ParentMesh(props) {
   const { nodes, materials } = useGLTF(gltf)
   const [clicked, setClicked] = useState(false)
   const [hovered, setHovered] = useState(false)
+  console.log("render 2")
 
   const meshRef = useRef()
   // Using this allows the focussed and hover state to be rendered visible
@@ -89,7 +90,7 @@ export default function ParentMesh(props) {
               activationMsg={mesh.A11yMessage}
               deactivationMsg=""
               tabindex="-1"
-            a11yElStyle={{ pointerEvents: 'none' }}
+              a11yElStyle={{ pointerEvents: 'none' }}
 
             >
               <ChildMesh

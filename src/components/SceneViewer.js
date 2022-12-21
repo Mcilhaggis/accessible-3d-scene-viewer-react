@@ -12,9 +12,11 @@ import Progress from './Progress'
 import Model from './Model'
 
 import Models from '../data/modelJSON.json'
-
+import processGltf from '../utils/gltfjsx'
 import '../styles.scss'
 const SceneViewer = () => {
+    // processGltf()
+
     let arrOfModels = Models.models
 
     const [modelScale, setModelScale] = useState(1);
@@ -28,6 +30,7 @@ const SceneViewer = () => {
     const [objectFocus, setObjectFocus] = useState(null)
     const { a11yPrefersState } = useUserPreferences()
 
+    console.log("render")
 
     
     useEffect(() => {
@@ -159,6 +162,7 @@ const SceneViewer = () => {
                                 scale={modelScale} >
 
                                 {arrOfModels.map((model, index) => {
+                                    console.log("mapping")
                                     return (
                                         <Model
                                             key={`Model-` + index}
