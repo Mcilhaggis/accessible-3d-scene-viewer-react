@@ -1,15 +1,30 @@
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from './loaders/GLTFLoader';
+import { DRACOLoader } from './loaders/DRACOLoader';
 
 let modelInstanceArr = [];
-
+let srcfile = '../../dist/assets/gltf/paintbrush.gltf'
 export default function processGltf() {
-    const gltf = useLoader(GLTFLoader, '../../dist/assets/gltf/double-mushroom.gltf');
+    // const gltf = useLoader(GLTFLoader, srcfile);
+    const loader = new GLTFLoader()
+
+    let dracoLoader = new DRACOLoader();
+
+// Specify path to a folder containing WASM/JS decoding libraries.
+dracoLoader.setDecoderPath( './loaders/DRACOLoader' );
+// Optional: Pre-fetch Draco WASM/JS module.
+dracoLoader.preload();
+
+loader.setDRACOLoader(dracoLoader)
+
+    const gltf = useLoader(loader, srcfile);
+
 
     for (const property in gltf.nodes) {
         let parentMesh = {
             name: '',
-            children: []
+            children: [],
+            src: srcfile
         }
         // if its the scene ignore, this is top level and not an individual parent
         if (gltf.nodes[property].name === "Scene") {
@@ -32,14 +47,15 @@ export default function processGltf() {
                         // otherwise it has a true parent container that it needs to sit within to render in the scene
                         for (var i = 0; i < modelInstanceArr.length; i++) {
                             if (parentMeshName === modelInstanceArr[i].name) {
-                                modelInstanceArr[i].children.push(property)
+                                if (!modelInstanceArr[i].children.includes(property)) {
+                                    modelInstanceArr[i].children.push(property)
+                                }
                             }
                         }
                     }
-
                 }
             }
         }
     }
-    console.log(modelInstanceArr)
+    return modelInstanceArr
 }

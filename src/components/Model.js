@@ -9,12 +9,36 @@ import processGltf from '../utils/gltfjsx'
 
 export default function Model(props) {
   let meshArr = props.meshes
-  processGltf()
+  let meshDetails = processGltf()
   //error in console being caused by calling the above function 
 console.log("render")
+console.log("meshDeatils", meshDetails)
   return (
     <>
-      {meshArr.map((mesh, index) => {
+      {meshDetails.map((mesh, index) => {
+        return (
+          <group {...props} dispose={null} scale={50} key={`group` + index}>
+            <A11y
+              key={props.index}
+              role="togglebutton"
+              startPressed={false}
+              // activationMsg={mesh.A11yMessage}
+              deactivationMsg=""
+              tabindex="-1"
+              a11yElStyle={{ pointerEvents: 'none' }}
+            >
+              <ParentMesh
+                key={`parent` + index}
+                index={index}
+                mesh={mesh}
+                gltf={mesh.gltf}
+              />
+            </A11y>
+          </group>
+        )
+      })}
+      {/* This code pulls from the JSON file and includes labels */}
+      {/* {meshArr.map((mesh, index) => {
         return (
           <group {...props} dispose={null} scale={50} key={`group` + index}>
             <A11y
@@ -35,7 +59,7 @@ console.log("render")
             </A11y>
           </group>
         )
-      })}
+      })} */}
     </>
   )
 }

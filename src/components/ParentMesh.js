@@ -11,12 +11,11 @@ import ChildMesh from './ChildMesh'
 let gltf;
 export default function ParentMesh(props) {
   let parentProperties = props.mesh
-  gltf = props.gltf
+  gltf = parentProperties.src
 
   const { nodes, materials } = useGLTF(gltf)
   const [clicked, setClicked] = useState(false)
   const [hovered, setHovered] = useState(false)
-  console.log("render 2")
 
   const meshRef = useRef()
   // Using this allows the focussed and hover state to be rendered visible
@@ -26,8 +25,8 @@ export default function ParentMesh(props) {
     <>
       <mesh
         key={`containerMesh` + props.index}
-        geometry={nodes[parentProperties.geometry]["geometry"]}
-        material={materials[parentProperties.material]}
+        geometry={ nodes[parentProperties.name]["geometry"]}
+        material={materials[parentProperties]}
         ref={meshRef}
         onClick={(e) => {
           e.stopPropagation();
@@ -97,8 +96,8 @@ export default function ParentMesh(props) {
                 key={`childMesh` + index}
                 index={index}
                 mesh={mesh}
-                geometry={nodes[mesh.geometry]["geometry"]}
-                material={materials[mesh.material]}
+                geometry={nodes[mesh]["geometry"]}
+                material={nodes[mesh]["material"]}
               />
             </A11y>
           )

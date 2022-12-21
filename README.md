@@ -33,6 +33,14 @@ Because we set this up the package.json like so:
 - @react-three/a11y
 https://github.com/pmndrs/react-three-a11y 
 
+## Open Source Loaders added
+- DRACOLoader - Draco is an open source library for compressing and decompressing 3D meshes and point clouds. Compressed geometry can be significantly smaller, at the cost of additional decoding time on the client device.
+
+
+
+
+
+
 ### To load scss files:
 - sass
 - sass-loader
