@@ -3,26 +3,22 @@ import { GLTFLoader } from './loaders/GLTFLoader';
 import { DRACOLoader } from './loaders/DRACOLoader';
 
 let modelInstanceArr = [];
-let srcfile = '../../dist/assets/gltf/paintbrush.gltf'
+let srcfile = '../../dist/assets/gltf/trashes.gltf'
+// let srcfile = '../../dist/assets/gltf/donutv4.gltf'
+console.log(srcfile)
 export default function processGltf() {
-    // const gltf = useLoader(GLTFLoader, srcfile);
-    const loader = new GLTFLoader()
 
-    let dracoLoader = new DRACOLoader();
+    let gltf = useLoader(GLTFLoader, srcfile, loader => {
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath('./libs/draco/');
+        loader.setDRACOLoader(dracoLoader);
+      });
 
-// Specify path to a folder containing WASM/JS decoding libraries.
-dracoLoader.setDecoderPath( './loaders/DRACOLoader' );
-// Optional: Pre-fetch Draco WASM/JS module.
-dracoLoader.preload();
-
-loader.setDRACOLoader(dracoLoader)
-
-    const gltf = useLoader(loader, srcfile);
-
-
+    console.log('gltf', gltf)
     for (const property in gltf.nodes) {
         let parentMesh = {
             name: '',
+            position: {},
             children: [],
             src: srcfile
         }
@@ -33,7 +29,6 @@ loader.setDRACOLoader(dracoLoader)
             // if it has a parent... 
             for (const childProperty in gltf.nodes[property]) {
                 if (childProperty == 'parent') {
-                    // console.log('hit 1')
                     let parentMeshName = gltf.nodes[property][childProperty].name
                     // and that parent is Scene, it is a main container for child meshes to make up an object
                     if (parentMeshName == 'Scene' && !modelInstanceArr.some(e => e.name === gltf.nodes[property].name)) {
@@ -41,6 +36,7 @@ loader.setDRACOLoader(dracoLoader)
                         Object.create(parentMesh);
                         // Store it as a parent object
                         parentMesh.name = gltf.nodes[property].name
+                        parentMesh.position = gltf.nodes[property].position
                         modelInstanceArr.push(parentMesh)
                     }
                     else {
@@ -56,6 +52,7 @@ loader.setDRACOLoader(dracoLoader)
                 }
             }
         }
+        console.log('here')
     }
     return modelInstanceArr
 }
