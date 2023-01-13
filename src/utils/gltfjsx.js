@@ -3,7 +3,7 @@ import { GLTFLoader } from './loaders/GLTFLoader';
 import { DRACOLoader } from './loaders/DRACOLoader';
 
 let modelInstanceArr = [];
-let srcfile = '../../dist/assets/gltf/trashes.gltf'
+let srcfile = '../../dist/assets/gltf/donutv4.gltf'
 // let srcfile = '../../dist/assets/gltf/donutv4.gltf'
 console.log(srcfile)
 export default function processGltf() {
@@ -19,6 +19,7 @@ export default function processGltf() {
         let parentMesh = {
             name: '',
             position: {},
+            material: '',
             children: [],
             src: srcfile
         }
@@ -37,6 +38,7 @@ export default function processGltf() {
                         // Store it as a parent object
                         parentMesh.name = gltf.nodes[property].name
                         parentMesh.position = gltf.nodes[property].position
+                        parentMesh.material = gltf.nodes[property].material
                         modelInstanceArr.push(parentMesh)
                     }
                     else {
@@ -52,7 +54,6 @@ export default function processGltf() {
                 }
             }
         }
-        console.log('here')
     }
     return modelInstanceArr
 }

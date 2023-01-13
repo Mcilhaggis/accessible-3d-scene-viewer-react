@@ -17,20 +17,13 @@ export default function ParentMesh(props) {
   const [clicked, setClicked] = useState(false)
   const [hovered, setHovered] = useState(false)
   let positioning = Object.values(parentProperties.position)
-  console.log('parentMEsh', positioning)
   const meshRef = useRef()
   // Using this allows the focussed and hover state to be rendered visible
   const a11y = useA11y()
-  // console.log('parentMesh', a11y)
+  console.log('parentProperties', parentProperties.material)
   return (
     <>
       <mesh
-        key={`containerMesh` + props.index}
-        geometry={nodes[parentProperties.name]["geometry"]}
-        material={materials[parentProperties]}
-        position={positioning}
-
-        ref={meshRef}
         onClick={(e) => {
           e.stopPropagation();
           setClicked(!clicked)
@@ -40,6 +33,14 @@ export default function ParentMesh(props) {
             a11y.pressed = true
           }
         }}
+
+
+        key={`containerMesh` + props.index}
+        geometry={nodes[parentProperties.name]["geometry"]}
+        material={parentProperties.material}
+        position={positioning}
+
+        ref={meshRef}
         onPointerOver={e => {
           e.stopPropagation()
           // Trigger re-render
@@ -82,6 +83,7 @@ export default function ParentMesh(props) {
           </Html>
         )}
       </mesh>
+    
       {parentProperties.children ?
         parentProperties.children.map((mesh, index) => {
           return (
