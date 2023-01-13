@@ -12,7 +12,7 @@ export default function ChildMesh(props) {
     const childMeshRef = useRef()
     const a11y = useA11y()
     let mesh = props.mesh
-    console.log('childMesh', props.material)
+    // console.log('childMesh', props.material)
 
     return (
         <mesh
@@ -21,9 +21,9 @@ export default function ChildMesh(props) {
                 setClicked(!clicked)
                 if (a11y.pressed) {
                     a11y.pressed = false
-                  } else {
+                } else {
                     a11y.pressed = true
-                  }
+                }
             }}
             key={`childMesh` + props.index}
             geometry={props.geometry}

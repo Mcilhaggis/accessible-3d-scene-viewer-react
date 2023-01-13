@@ -1,22 +1,17 @@
 
 // Entry point of react App
-import React, { Suspense, useState, useEffect, useRef, useLayoutEffect } from "react";
+import React, { Suspense, useState, useEffect, useRef, useLayoutEffect, componentDidMount } from "react";
 import { Canvas, useThree } from "@react-three/fiber"
 import { OrbitControls, useBounds } from '@react-three/drei'
 import { A11yAnnouncer, useUserPreferences } from '@react-three/a11y'
 
-
-
 import MenuPanel from './MenuPanel'
 import Progress from './Progress'
 import Model from './Model'
-
 import Models from '../data/modelJSON.json'
-import processGltf from '../utils/gltfjsx'
-import '../styles.scss'
-const SceneViewer = () => {
-    // processGltf()
 
+import '../styles.scss'
+const SceneViewer = (props) => {
     let arrOfModels = Models.models
 
     const [modelScale, setModelScale] = useState(1);
@@ -29,10 +24,30 @@ const SceneViewer = () => {
     const [keypressDirection, setKeyPressDirection] = useState(null)
     const [objectFocus, setObjectFocus] = useState(null)
     const { a11yPrefersState } = useUserPreferences()
+    const [configData, setConfigData] = useState([]);
 
-    console.log("render")
 
-    
+    const getData = () => {
+        fetch('./data/sv-1.json'
+            , {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }
+        )
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                setData(myJson)
+            });
+    }
+    useEffect(() => {
+        setConfigData()
+    }, [])
+
+
     useEffect(() => {
         directionalMovement(keypressDirection);
     }, [keypressDirection]);
@@ -121,6 +136,8 @@ const SceneViewer = () => {
     }
     return (
         <>
+        {    console.log('++++++++++++++++++++++++++++++++++++', setConfigData)
+}
             <div className="main-container" id="container1">
                 <MenuPanel
                     directionalMovement={directionalMovement}
@@ -162,7 +179,6 @@ const SceneViewer = () => {
                                 scale={modelScale} >
 
                                 {arrOfModels.map((model, index) => {
-                                    console.log("mapping")
                                     return (
                                         <Model
                                             key={`Model-` + index}
@@ -171,6 +187,7 @@ const SceneViewer = () => {
                                             labelDistance={model.labelDistance}
                                             meshes={model.meshes}
                                             gltfFile={model.gltf}
+                                            config={configData}
                                         />
                                     )
                                 })}
