@@ -1,3 +1,0 @@
-*.gltf filter=lfs diff=lfs merge=lfs -text
-donutv5.gltf filter=lfs diff=lfs merge=lfs -text
-dist/assets/gltf/donutv5.gltf filter=lfs diff=lfs merge=lfs -text
