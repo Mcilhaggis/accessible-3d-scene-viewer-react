@@ -6,14 +6,17 @@ import { OrbitControls, useBounds } from '@react-three/drei'
 import { A11yAnnouncer, useUserPreferences } from '@react-three/a11y'
 
 
+
 import MenuPanel from './MenuPanel'
 import Progress from './Progress'
 import Model from './Model'
 
-import Models from '../json/modelJSON.json'
-
+import Models from '../data/modelJSON.json'
+import processGltf from '../utils/gltfjsx'
 import '../styles.scss'
 const SceneViewer = () => {
+    // processGltf()
+
     let arrOfModels = Models.models
 
     const [modelScale, setModelScale] = useState(1);
@@ -21,12 +24,13 @@ const SceneViewer = () => {
     const [modelYPos, setModelYPos] = useState(0);
     const [modelZPos, setModelZPos] = useState(0);
     const ref = useRef()
-    let targetDefault = [0, 5, 8]
+    let targetDefault = [0, 70, 80]
     const [targetLocation, setTargetLocation] = useState(targetDefault);
     const [keypressDirection, setKeyPressDirection] = useState(null)
     const [objectFocus, setObjectFocus] = useState(null)
     const { a11yPrefersState } = useUserPreferences()
 
+    console.log("render")
 
     
     useEffect(() => {
@@ -158,6 +162,7 @@ const SceneViewer = () => {
                                 scale={modelScale} >
 
                                 {arrOfModels.map((model, index) => {
+                                    console.log("mapping")
                                     return (
                                         <Model
                                             key={`Model-` + index}
