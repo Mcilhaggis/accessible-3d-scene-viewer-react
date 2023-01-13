@@ -24,7 +24,7 @@ const SceneViewer = () => {
     const [modelYPos, setModelYPos] = useState(0);
     const [modelZPos, setModelZPos] = useState(0);
     const ref = useRef()
-    let targetDefault = [0, 5, 8]
+    let targetDefault = [0, 70, 80]
     const [targetLocation, setTargetLocation] = useState(targetDefault);
     const [keypressDirection, setKeyPressDirection] = useState(null)
     const [objectFocus, setObjectFocus] = useState(null)
