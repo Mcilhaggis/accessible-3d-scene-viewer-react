@@ -37,10 +37,6 @@ https://github.com/pmndrs/react-three-a11y
 - DRACOLoader - Draco is an open source library for compressing and decompressing 3D meshes and point clouds. Compressed geometry can be significantly smaller, at the cost of additional decoding time on the client device.
 
 
-
-
-
-
 ### To load scss files:
 - sass
 - sass-loader
@@ -84,9 +80,9 @@ Drop into gltf folder - shouldn't need to run a node command
 ## Features
 - Use arrow keys to rotate and scale model
 - Custom built collapsable menu for clickable and tabbable key board interaction
-- Screen reader descriptions added with A11y for each model on screen
-- Interact with model on screen using mouse or keybaord to reveal labels, these are also read by the screen reader
-- Uses JSON file to render model, labels and inital positioning
+- Screen reader descriptions added with A11y for each individual model on screen
+- Interact with model on screen using mouse (hover & click) or keyboard (tab & enter) to reveal labels, these are also read by the screen reader
+<!-- - Uses JSON file to render model, labels and inital positioning -->
 - At 200% zoom container and visual are maintained
 - Insert GLTF model and interact with the different parts of a model
 ---
