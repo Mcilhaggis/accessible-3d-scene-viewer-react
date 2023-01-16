@@ -21,19 +21,17 @@ export default function ParentMesh(props) {
   const a11y = useA11y()
   let labelContent;
   let labelDistance;
-
   let currentItemJSON = props.jsonData.find(x => x.geometry === props.name);
-
-  
-console.log('currentItemJSON', currentItemJSON)
-console.log('props.jsonData', props.jsonData)
-  if (currentItemJSON  != undefined) {
+  if (currentItemJSON != undefined) {
     labelContent = currentItemJSON.labelContent
     labelDistance = currentItemJSON.labelDistance
   } else {
     labelContent = ''
     labelDistance = 0
   }
+
+  console.log('currentItemJSON', currentItemJSON)
+
   return (
     <>
       <mesh
@@ -44,7 +42,6 @@ console.log('props.jsonData', props.jsonData)
             setHasLabel(true)
           } else {
             setHasLabel(false)
-
           }
           if (a11y.pressed) {
             a11y.pressed = false
@@ -122,6 +119,7 @@ console.log('props.jsonData', props.jsonData)
                 mesh={mesh}
                 geometry={nodes[mesh]["geometry"]}
                 material={nodes[mesh]["material"]}
+                currentItemJSON={currentItemJSON['children'] ? currentItemJSON['children'][index] : undefined}
               />
             </A11y>
           )
