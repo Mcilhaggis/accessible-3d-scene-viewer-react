@@ -4,10 +4,6 @@ import { A11y, useA11y } from '@react-three/a11y'
 import processGltf from '../utils/gltfjsx'
 
 export default function Model(props) {
-  // console.log('$$$$$$', props.config)
-
-  
-  let meshArr = props.meshes
   // **PASS THE SRC FILE HERE FORM THE JSON
   let meshDetails = processGltf(props.config)
   // console.log('meshDetails', meshDetails)

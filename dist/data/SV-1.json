@@ -1,6 +1,7 @@
 {
     "models": [
         {
+            "id": 1,
             "gltf": "../../dist/assets/gltf/trashes.gltf",
             "position": [0, 0, 0 ],
             "meshes": [

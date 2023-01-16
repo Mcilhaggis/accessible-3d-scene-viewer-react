@@ -13,7 +13,6 @@ import Models from '../data/modelJSON.json'
 import '../styles.scss'
 const SceneViewer = (props) => {
     let arrOfModels = Models.models
-
     const [modelScale, setModelScale] = useState(1);
     const [modelXPos, setModelXPos] = useState(0);
     const [modelYPos, setModelYPos] = useState(0);
@@ -26,9 +25,8 @@ const SceneViewer = (props) => {
     const { a11yPrefersState } = useUserPreferences()
     const [configData, setConfigData] = useState([]);
 
-
     const getData = () => {
-        fetch('./data/sv-1.json'
+        fetch(props.config
             , {
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,11 +38,11 @@ const SceneViewer = (props) => {
                 return response.json();
             })
             .then(function (myJson) {
-                setData(myJson)
+                setConfigData(myJson)
             });
     }
     useEffect(() => {
-        setConfigData()
+        getData()
     }, [])
 
 
@@ -136,35 +134,32 @@ const SceneViewer = (props) => {
     }
     return (
         <>
-        {    console.log('++++++++++++++++++++++++++++++++++++', setConfigData)
-}
-            <div className="main-container" id="container1">
+            <div className="main-container" id={`container` + props.id}>
                 <MenuPanel
                     directionalMovement={directionalMovement}
                     navigateObjWithMenu={navigateObjWithMenu}
                 />
 
-                <Canvas id="scene-container"
+                <Canvas id={`scene-container-` + props.id}
+                className='canvasItem'
                     tabIndex='0'
                     onKeyDown={(e) => {
                         if (e.key === "-") {
-                            directionalMovement('subtract')
+                            directionalMovement('subtract') 
                         } else if (e.key === "+") {
                             directionalMovement('add')
                         } else {
                             let slicedkeyCode = e.key.slice(5)
                             directionalMovement(slicedkeyCode.toLowerCase())
                         }
-
                     }}
                 >
+
                     <axesHelper args={[50]} />
                     <CustomCamera />
                     <mesh >
                         <gridHelper />
-
                         <OrbitControls />
-
                         <ambientLight
                             intensity={0.5}
                         />
@@ -185,15 +180,11 @@ const SceneViewer = (props) => {
                                             position={model.position}
                                             labelContent={model.labelContent}
                                             labelDistance={model.labelDistance}
-                                            meshes={model.meshes}
-                                            gltfFile={model.gltf}
-                                            config={configData}
+                                            config={configData['models']}
                                         />
                                     )
                                 })}
-
                             </group>
-
                         </Suspense>
                     </mesh>
 

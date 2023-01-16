@@ -15,7 +15,7 @@
   height: 40rem;
 }
 
-#scene-container {
+.canvasItem {
   /* tell our scene container to take up the full page */
   /*
     Set the container's background color to the same as the scene's
