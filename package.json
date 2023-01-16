@@ -12,6 +12,7 @@
   "author": "Rachael McIlhagga",
   "license": "ISC",
   "devDependencies": {
+    "babel-loader": "^8.3.0",
     "css-loader": "^6.7.1",
     "node-sass": "^7.0.3",
     "sass-loader": "^13.1.0",
@@ -30,7 +31,6 @@
     "@react-three/drei": "^9.36.0",
     "@react-three/fiber": "^8.8.10",
     "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.2.5",
     "gh-pages": "^4.0.0",
     "lil-gui": "^0.17.0",
     "react": "^18.2.0",
