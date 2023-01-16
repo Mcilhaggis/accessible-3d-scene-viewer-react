@@ -14,7 +14,7 @@ ReactDOM.render(
 // Find all DOM containers
 document.querySelectorAll('.scene-viewer-holder')
   .forEach((domContainer, index) => {
-    console.log(domContainer, index)
+    // console.log(domContainer, index)
     // Read the config from a data-* attribute.
     const _config = domContainer.dataset.config;
 

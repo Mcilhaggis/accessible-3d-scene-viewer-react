@@ -5,12 +5,11 @@ import processGltf from '../utils/gltfjsx'
 
 export default function Model(props) {
   let meshDetails = processGltf(props.config['models'])
-  {console.log('*****props*******', props)}
+  // {console.log('*****props*******', props)}
 
   return (
     <>
       {meshDetails.map((mesh, index) => {
-    {console.log('************', mesh)}
         return (
           <group {...props} dispose={null} scale={50} key={`group` + index}>
             <A11y

@@ -26,6 +26,12 @@
                     "A11yMessage": "I am a sheet of paper",
                     "labelContent": "I am a sheet of paper ",
                     "labelDistance": 100
+                },
+                {
+                    "geometry": "trashes007",
+                    "A11yMessage": "I am broken bottle",
+                    "labelContent": "I am a broken bottle",
+                    "labelDistance": 100
                 }
             ]
         }

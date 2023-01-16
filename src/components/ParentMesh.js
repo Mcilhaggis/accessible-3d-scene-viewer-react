@@ -5,10 +5,8 @@ import { Html } from '@react-three/drei'
 import ChildMesh from './ChildMesh'
 
 let gltf;
-export default function ParentMesh(props, name) {
-  console.log('props.jsonData', props.jsonData)
-  console.log('props.index', props.index)
-  console.log('props.name', name)
+export default function ParentMesh(props) {
+  console.log('props.name', props.name)
 
   let parentProperties = props.mesh
   gltf = parentProperties.src
@@ -23,10 +21,15 @@ export default function ParentMesh(props, name) {
   const a11y = useA11y()
   let labelContent;
   let labelDistance;
-console.log('test', props.jsonData[props.index])
-  if (props.jsonData[props.index] != undefined) {
-    labelContent = props.jsonData[props.index].labelContent
-    labelDistance = props.jsonData[props.index].labelDistance
+
+  let currentItemJSON = props.jsonData.find(x => x.geometry === props.name);
+
+  
+console.log('currentItemJSON', currentItemJSON)
+console.log('props.jsonData', props.jsonData)
+  if (currentItemJSON  != undefined) {
+    labelContent = currentItemJSON.labelContent
+    labelDistance = currentItemJSON.labelDistance
   } else {
     labelContent = ''
     labelDistance = 0
@@ -37,7 +40,7 @@ console.log('test', props.jsonData[props.index])
         onClick={(e) => {
           e.stopPropagation();
           setClicked(!clicked)
-          if (props.jsonData[props.index].labelContent != undefined) {
+          if (currentItemJSON && currentItemJSON.labelContent != undefined) {
             setHasLabel(true)
           } else {
             setHasLabel(false)
