@@ -8,11 +8,10 @@ import { A11yAnnouncer, useUserPreferences } from '@react-three/a11y'
 import MenuPanel from './MenuPanel'
 import Progress from './Progress'
 import Model from './Model'
-import Models from '../data/modelJSON.json'
 
 import '../styles.scss'
 const SceneViewer = (props) => {
-    let arrOfModels = Models.models
+    let arrOfModels;
     const [modelScale, setModelScale] = useState(1);
     const [modelXPos, setModelXPos] = useState(0);
     const [modelYPos, setModelYPos] = useState(0);
@@ -39,13 +38,19 @@ const SceneViewer = (props) => {
             })
             .then(function (myJson) {
                 setConfigData(myJson)
-            });
+            })
+
     }
     useEffect(() => {
         getData()
     }, [])
 
+    if (configData['models'] != undefined) {
+        arrOfModels = configData['models']
+    }
 
+
+    // arrOfModels= configData
     useEffect(() => {
         directionalMovement(keypressDirection);
     }, [keypressDirection]);
@@ -141,11 +146,11 @@ const SceneViewer = (props) => {
                 />
 
                 <Canvas id={`scene-container-` + props.id}
-                className='canvasItem'
+                    className='canvasItem'
                     tabIndex='0'
                     onKeyDown={(e) => {
                         if (e.key === "-") {
-                            directionalMovement('subtract') 
+                            directionalMovement('subtract')
                         } else if (e.key === "+") {
                             directionalMovement('add')
                         } else {
@@ -173,14 +178,18 @@ const SceneViewer = (props) => {
                                 rotation={[modelXPos, modelZPos, modelYPos]}
                                 scale={modelScale} >
 
-                                {arrOfModels.map((model, index) => {
+                                {arrOfModels && arrOfModels.map((model, index) => {
+                                    { console.log('====================', model.meshes) }
                                     return (
                                         <Model
                                             key={`Model-` + index}
+                                            index={index}
                                             position={model.position}
-                                            labelContent={model.labelContent}
-                                            labelDistance={model.labelDistance}
-                                            config={configData['models']}
+                                            jsonData={arrOfModels[index].meshes}
+                                            // labelContent={arrOfModels[index].meshes[index].A11yMessage}
+                                            labelDistance={10}
+                                            config={configData}
+                                            labelContent={model.meshes[index]}
                                         />
                                     )
                                 })}

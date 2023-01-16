@@ -8,7 +8,6 @@ let srcfile;
 // **PASS THE SRC FILE FROM THE JSON
 export default function processGltf(props) {
     let modelInstanceArr = []
-    console.log('*****************', props[0].gltf)
     srcfile = props[0].gltf
     let gltf = useLoader(GLTFLoader, srcfile, loader => {
         const dracoLoader = new DRACOLoader();
@@ -56,7 +55,6 @@ export default function processGltf(props) {
                 }
             }
         }
-        
     }
     return modelInstanceArr
     

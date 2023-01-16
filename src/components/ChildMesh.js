@@ -12,7 +12,7 @@ export default function ChildMesh(props) {
     const childMeshRef = useRef()
     const a11y = useA11y()
     let mesh = props.mesh
-    // console.log('childMesh', props.material)
+    console.log('childMesh', props.props)
 
     return (
         <mesh
