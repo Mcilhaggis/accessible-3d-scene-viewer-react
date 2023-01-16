@@ -2,25 +2,32 @@
     "models": [
         {
             "gltf": "../../dist/assets/gltf/donutv4.gltf",
-            "position": [0, 0, 0 ],
+            "position": [
+                0,
+                0,
+                0
+            ],
             "meshes": [
                 {
-                    "geometry": "TESTTTT",
-                    "material": "Material.002",
+                    "geometry": "Donut",
                     "A11yMessage": "I am the base of the donut",
                     "labelContent": "I am the base of the donut",
                     "labelDistance": 10,
-
                     "children": [
                         {
                             "geometry": "Icing",
-                            "material": "Material.001",
                             "A11yMessage": "I am icing on the donut",
                             "labelContent": "I am icing on the donut",
                             "labelDistance": 5
-
                         }
                     ]
+                },
+                {
+                    "geometry": "Sprinkle",
+                    "A11yMessage": "I am a sprinkle",
+                    "labelContent": "I am a sprinkle",
+                    "labelDistance": 10,
+                    "children": []
                 }
             ]
         }
