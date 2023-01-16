@@ -86,7 +86,7 @@ console.log('test', props.jsonData[props.index])
           </Html>
         )}
         {/* duplicate code for tab and enter clicking and mouse clicking - could be reduced but I can't get them to work in one  */}
-        {a11y.pressed && hasLabel && (
+        {a11y.pressed && (
 
           <Html distanceFactor={labelDistance}>
             <div
