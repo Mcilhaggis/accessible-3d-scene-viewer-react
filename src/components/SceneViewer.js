@@ -23,7 +23,7 @@ const SceneViewer = (props) => {
     const [objectFocus, setObjectFocus] = useState(null)
     const { a11yPrefersState } = useUserPreferences()
     const [configData, setConfigData] = useState([]);
-
+    let responseClone;
     const getData = () => {
         fetch(props.config
             , {
@@ -34,11 +34,18 @@ const SceneViewer = (props) => {
             }
         )
             .then(function (response) {
+                responseClone = response.clone(); // 2
                 return response.json();
             })
             .then(function (myJson) {
                 setConfigData(myJson)
-            })
+            }), function (rejectionReason) { // 3
+                console.log('Error parsing JSON from response:', rejectionReason, responseClone); // 4
+                responseClone.text() // 5
+                    .then(function (bodyText) {
+                        console.log('Received the following instead of valid JSON:', bodyText); // 6
+                    });
+            }
 
     }
     useEffect(() => {
@@ -179,17 +186,15 @@ const SceneViewer = (props) => {
                                 scale={modelScale} >
 
                                 {arrOfModels && arrOfModels.map((model, index) => {
-                                    { console.log('====================', model.meshes) }
                                     return (
                                         <Model
                                             key={`Model-` + index}
                                             index={index}
                                             position={model.position}
                                             jsonData={arrOfModels[index].meshes}
-                                            // labelContent={arrOfModels[index].meshes[index].A11yMessage}
+                                            labelContent={model.meshes[index]}
                                             labelDistance={10}
                                             config={configData}
-                                            labelContent={model.meshes[index]}
                                         />
                                     )
                                 })}

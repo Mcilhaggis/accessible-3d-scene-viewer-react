@@ -33,11 +33,9 @@ export default function ChildMesh(props) {
                 e.stopPropagation();
                 setClicked(!clicked)
                 if (currentItemJSON && props.currentItemJSON.labelContent != undefined) {
-                    console.log(props.currentItemJSON )
                     setHasLabel(true)
                 } else {
                     setHasLabel(false)
-                    console.log('does not have label content')
                 }
                 if (a11y.pressed) {
                     a11y.pressed = false
@@ -63,7 +61,6 @@ export default function ChildMesh(props) {
                 a11y.hover = false
             }}
         >
-            {console.log('hasLabel', hasLabel)}
             {clicked || a11y.focus || hovered || a11y.hover || a11y.pressed ? <meshStandardMaterial
                 attach="material"
                 color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "grey" : ""}
