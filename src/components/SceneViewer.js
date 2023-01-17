@@ -24,6 +24,7 @@ const SceneViewer = (props) => {
     const { a11yPrefersState } = useUserPreferences()
     const [configData, setConfigData] = useState([]);
     let responseClone;
+    console.log('test')
     const getData = () => {
         fetch(props.config
             , {
