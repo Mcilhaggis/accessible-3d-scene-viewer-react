@@ -2,7 +2,7 @@
     "models": [
         {
             "id": 1,
-            "gltf": "../../dist/assets/gltf/trashes.gltf",
+            "gltf": "/assets/gltf/trashes.gltf",
             "position": [
                 0,
                 0,
