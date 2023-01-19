@@ -1,7 +1,7 @@
 {
     "models": [
         {
-            "gltf": "../assets/gltf/donutv4.gltf",
+            "gltf": "../../dist/assets/gltf/donutv4.gltf",
             "position": [
                 0,
                 0,
