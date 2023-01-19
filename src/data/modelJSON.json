@@ -5,7 +5,7 @@
             "position": [0, 0, 0 ],
             "meshes": [
                 {
-                    "geometry": "TESTTTT",
+                    "geometry": "Donut",
                     "material": "Material.002",
                     "A11yMessage": "I am the base of the donut",
                     "labelContent": "I am the base of the donut",

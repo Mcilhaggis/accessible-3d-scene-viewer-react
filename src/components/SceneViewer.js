@@ -29,9 +29,9 @@ const SceneViewer = (props) => {
         fetch(props.config
             , {
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
+                  }
             }
         )
             .then(function (response) {
