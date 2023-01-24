@@ -179,7 +179,6 @@ const SceneViewer = (props) => {
                                 scale={modelScale} >
 
                                 {arrOfModels && arrOfModels.map((model, index) => {
-                                    { console.log('====================', model.meshes) }
                                     return (
                                         <Model
                                             key={`Model-` + index}

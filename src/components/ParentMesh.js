@@ -6,8 +6,6 @@ import ChildMesh from './ChildMesh'
 
 let gltf;
 export default function ParentMesh(props) {
-  console.log('props.name', props.name)
-
   let parentProperties = props.mesh
   gltf = parentProperties.src
 
@@ -29,8 +27,6 @@ export default function ParentMesh(props) {
     labelContent = ''
     labelDistance = 0
   }
-
-  console.log('currentItemJSON', currentItemJSON)
 
   return (
     <>
@@ -101,7 +97,6 @@ export default function ParentMesh(props) {
 
       {parentProperties.children ?
         parentProperties.children.map((mesh, index) => {
-          console.log('parentProperties', parentProperties)
           return (
             <A11y
               key={`Ally` + index}
