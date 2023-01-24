@@ -68,7 +68,7 @@ export default function ParentMesh(props) {
       >
         {clicked || a11y.focus || hovered || a11y.hover || a11y.pressed ? <meshStandardMaterial
           attach="material"
-          color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "grey" : ""}
+          color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "pink" : ""}
         /> : ""}
 
         {clicked && hasLabel && (
