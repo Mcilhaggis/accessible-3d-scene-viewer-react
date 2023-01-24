@@ -8,8 +8,8 @@ const App = () => {
     <>
       <div className="scene-viewer-holder" data-config="./data/sv-1.json">
       </div>
-      <div className="scene-viewer-holder" data-config="./data/sv-2.json">
-      </div>
+      {/* <div className="scene-viewer-holder" data-config="./data/sv-2.json">
+      </div> */}
     </>
 
   )

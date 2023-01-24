@@ -30,6 +30,7 @@
     "@react-three/a11y": "^3.0.0",
     "@react-three/drei": "^9.36.0",
     "@react-three/fiber": "^8.8.10",
+    "@tvontario/react": "^17.0.1",
     "babel-eslint": "^10.1.0",
     "gh-pages": "^4.0.0",
     "lil-gui": "^0.17.0",

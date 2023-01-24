@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SceneViewer from './components/SceneViewer'
-import './styles.scss'
+import SceneViewer from './js/components/SceneViewer'
+import './css/styles.scss'
 
 
 import App from './App';
@@ -14,6 +14,7 @@ ReactDOM.render(
 // Find all DOM containers
 document.querySelectorAll('.scene-viewer-holder')
   .forEach((domContainer, index) => {
+    console.log('i found a container')
     // console.log(domContainer, index)
     // Read the config from a data-* attribute.
     const _config = domContainer.dataset.config;
