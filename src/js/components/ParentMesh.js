@@ -66,6 +66,8 @@ export default function ParentMesh(props) {
           a11y.hover = false
         }}
       >
+
+        {/* HIDE */}
         {clicked || a11y.focus || hovered || a11y.hover || a11y.pressed ? <meshStandardMaterial
           attach="material"
           color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "pink" : ""}

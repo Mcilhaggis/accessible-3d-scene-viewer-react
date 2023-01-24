@@ -5,7 +5,6 @@ import processGltf from '../../utils/gltfjsx'
 
 export default function Model(props) {
   let meshDetails = processGltf(props.config['models'])
-  // {console.log('*****props*******', props)}
 
   return (
     <>
