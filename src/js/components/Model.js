@@ -1,7 +1,7 @@
 import React from 'react'
 import ParentMesh from './ParentMesh'
 import { A11y } from '@react-three/a11y'
-import processGltf from '../utils/gltfjsx'
+import processGltf from '../../utils/gltfjsx'
 
 export default function Model(props) {
   let meshDetails = processGltf(props.config['models'])

@@ -9,8 +9,10 @@ import MenuPanel from './MenuPanel'
 import Progress from './Progress'
 import Model from './Model'
 
-import '../styles.scss'
+import '../../css/styles.scss'
+
 const SceneViewer = (props) => {
+    console.log('loading!! ')
     let arrOfModels;
     const [modelScale, setModelScale] = useState(1);
     const [modelXPos, setModelXPos] = useState(0);
