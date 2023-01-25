@@ -12,7 +12,6 @@ import Model from './Model'
 import '../../css/styles.scss'
 
 const SceneViewer = (props) => {
-    console.log('loading!! ')
     let arrOfModels;
     const [modelScale, setModelScale] = useState(1);
     const [modelXPos, setModelXPos] = useState(0);
@@ -26,7 +25,7 @@ const SceneViewer = (props) => {
     const { a11yPrefersState } = useUserPreferences()
     const [configData, setConfigData] = useState([]);
     let responseClone;
-    console.log('test')
+
     const getData = () => {
         fetch(props.config
             , {
