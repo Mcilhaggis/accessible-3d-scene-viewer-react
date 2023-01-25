@@ -14,6 +14,7 @@ export default function ParentMesh(props) {
   const [clicked, setClicked] = useState(false)
   const [hovered, setHovered] = useState(false)
   let positioning = Object.values(parentProperties.position)
+  // const meshMaterial = new THREE.MeshStandardMaterial(parentProperties.material);
   const meshRef = useRef()
   // Using this allows the focussed and hover state to be rendered visible
   const a11y = useA11y()
@@ -27,7 +28,6 @@ export default function ParentMesh(props) {
     labelContent = ''
     labelDistance = 0
   }
-
   return (
     <>
       <mesh
@@ -68,10 +68,8 @@ export default function ParentMesh(props) {
       >
 
         {/* HIDE */}
-        {clicked || a11y.focus || hovered || a11y.hover || a11y.pressed ? <meshStandardMaterial
-          attach="material"
-          color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "pink" : ""}
-        /> : ""}
+        {clicked || a11y.focus || hovered || a11y.hover || a11y.pressed ? <meshStandardMaterial attach="material" color={clicked || a11y.pressed ? "purple" : a11y.focus ? "blue" : a11y.hover ? "pink" : ""} /> : <meshStandardMaterial attach="material" color={parentProperties.material.color} />}
+
 
         {clicked && hasLabel && (
           <Html distanceFactor={labelDistance}>
@@ -83,6 +81,7 @@ export default function ParentMesh(props) {
             </div>
           </Html>
         )}
+
         {/* duplicate code for tab and enter clicking and mouse clicking - could be reduced but I can't get them to work in one  */}
         {a11y.pressed && (
 
@@ -121,7 +120,7 @@ export default function ParentMesh(props) {
             </A11y>
           )
         })
-        : console.log("no children ")}
+        : console.log("no children found")}
     </>
   )
 }
